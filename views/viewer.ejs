@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div id="container">
-		<script>
+		<script src="/public/js/viewer.js">
 			var text2 = document.createElement('div');
 			text2.style.position = 'absolute';
 			//text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
@@ -120,14 +120,6 @@
 			text2.style.top = y + 'px';
 			text2.style.left = x + 'px';
 			document.body.appendChild(text2);
-		</script>
-		<script>
-			function toXYCoords (pos) {
-			        var vector = projector.projectVector(pos.clone(), camera);
-			        vector.x = (vector.x + 1)/2 * window.innerWidth;
-			        vector.y = -(vector.y - 1)/2 * window.innerHeight;
-			        return vector;
-			}
 		</script>
 		</div>
 	</body>
