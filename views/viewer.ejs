@@ -117,9 +117,17 @@
 			text2.style.height = 100;
 			text2.style.backgroundColor = "blue";
 			text2.innerHTML = "hi there!";
-			text2.style.top = 200 + 'px';
-			text2.style.left = 200 + 'px';
+			text2.style.top = y + 'px';
+			text2.style.left = x + 'px';
 			document.body.appendChild(text2);
+		</script>
+		<script>
+			function toXYCoords (pos) {
+			        var vector = projector.projectVector(pos.clone(), camera);
+			        vector.x = (vector.x + 1)/2 * window.innerWidth;
+			        vector.y = -(vector.y - 1)/2 * window.innerHeight;
+			        return vector;
+			}
 		</script>
 		</div>
 	</body>
