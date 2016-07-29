@@ -1,5 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 function Corridor(textureLoader){
+	//var score = 2
 
 	var corridor = new THREE.Object3D();
 
@@ -131,7 +132,6 @@ function Lightsaber(){
 module.exports = Lightsaber;
 },{}],6:[function(require,module,exports){
 function Sky(textureLoader){
-	
 	var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
 	var skyMaterial = new THREE.MeshBasicMaterial({
 		map: textureLoader.load('textures/sky.jpg'),
@@ -192,8 +192,6 @@ Utils.prototype.checkCollision = function(object, targetName, once, cb){
 	    			for(var i=0; i< this.collidedMeshes.length; i++){
 		    			var uuid = this.collidedMeshes[i];
 		    			if(result.uuid==uuid){
-		    				var score;
-		    				score++;
 		    				return;
 		    			}
 	    			}
