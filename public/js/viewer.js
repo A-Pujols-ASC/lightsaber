@@ -148,12 +148,6 @@ function setOrientationControls(e){
   controls.update();
   window.removeEventListener('deviceorientation', setOrientationControls, true);
 }
-function toXYCoords (pos) {
-        var vector = projector.projectVector(pos.clone(), camera);
-        vector.x = (vector.x + 1)/2 * window.innerWidth;
-        vector.y = -(vector.y - 1)/2 * window.innerHeight;
-        return vector;
-}
 
 /* UTILS */
 function setObjectQuat(object, data) {
