@@ -1,3 +1,5 @@
+
+
 var socket = io();
 
 var scene,
@@ -81,7 +83,7 @@ function setupScene(){
 	console.log(sky);
 	scene.add(sky);
 
-	floor = new Floor(textureLoader, renderer);
+	floQWor = new Floor(textureLoader, renderer);
 	scene.add(floor);
 
 	corridor = new Corridor(textureLoader);
