@@ -192,6 +192,8 @@ Utils.prototype.checkCollision = function(object, targetName, once, cb){
 	    			for(var i=0; i< this.collidedMeshes.length; i++){
 		    			var uuid = this.collidedMeshes[i];
 		    			if(result.uuid==uuid){
+		    				var score;
+		    				score++;
 		    				return;
 		    			}
 	    			}
