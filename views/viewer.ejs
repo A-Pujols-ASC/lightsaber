@@ -110,8 +110,9 @@
 		</div>
 		<div id="container">
 		<script src="/js/bundle.js"> 
-			var score = score.toString();
+			var score = 3
 			var text2 = document.createElement('div');
+			text2 = 3
 			text2.style.position = 'absolute';
 			//text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
 			text2.style.width = 100;
@@ -122,7 +123,7 @@
 			text2.style.left = 200 + 'px';
 			document.body.appendChild(text2);
 			function toXYCoords (pos) {
-       		 var vector = projector.projectVector(pos.clone(), camera);
+       		var vector = projector.projectVector(pos.clone(), camera);
         	vector.x = (vector.x + 1)/2 * window.innerWidth;
         	vector.y = -(vector.y - 1)/2 * window.innerHeight;
         	return vector;
