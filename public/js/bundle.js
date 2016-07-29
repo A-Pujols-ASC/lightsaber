@@ -131,6 +131,7 @@ function Lightsaber(){
 module.exports = Lightsaber;
 },{}],6:[function(require,module,exports){
 function Sky(textureLoader){
+	
 	var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
 	var skyMaterial = new THREE.MeshBasicMaterial({
 		map: textureLoader.load('textures/sky.jpg'),
