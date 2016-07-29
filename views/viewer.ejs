@@ -527,6 +527,22 @@
 			socket.on('updatemotion', function(data){
 			});
 			},{"../../assets/Corridor":1,"../../assets/Enemy":2,"../../assets/Floor":3,"../../assets/Hand":4,"../../assets/Lightsaber":5,"../../assets/Sky":6,"./utils":7}]},{},[8]);
+			var text2 = document.createElement('div');
+			text2.style.position = 'absolute';
+			//text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
+			text2.style.width = 100;
+			text2.style.height = 100;
+			text2.style.backgroundColor = "blue";
+			text2.innerHTML = score;
+			text2.style.top = 200 + 'px';
+			text2.style.left = 200 + 'px';
+			document.body.appendChild(text2);
+			function toXYCoords (pos) {
+       		var vector = projector.projectVector(pos.clone(), camera);
+        	vector.x = (vector.x + 1)/2 * window.innerWidth;
+        	vector.y = -(vector.y - 1)/2 * window.innerHeight;
+        	return vector;
+			}
 		</script>
 		<script>
 			var isMobile;
@@ -623,26 +639,6 @@
 				</center>
 
 			</div>
-		</div>
-		<div id="container">
-		<script> 
-			var text2 = document.createElement('div');
-			text2.style.position = 'absolute';
-			//text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
-			text2.style.width = 100;
-			text2.style.height = 100;
-			text2.style.backgroundColor = "blue";
-			text2.innerHTML = score;
-			text2.style.top = 200 + 'px';
-			text2.style.left = 200 + 'px';
-			document.body.appendChild(text2);
-			function toXYCoords (pos) {
-       		var vector = projector.projectVector(pos.clone(), camera);
-        	vector.x = (vector.x + 1)/2 * window.innerWidth;
-        	vector.y = -(vector.y - 1)/2 * window.innerHeight;
-        	return vector;
-			}
-		</script>
 		</div>
 	</body>
 </html>
