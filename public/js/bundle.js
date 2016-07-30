@@ -119,9 +119,9 @@ function Lightsaber(){
 	var lsMaterial = new THREE.MeshBasicMaterial({ color: "white" });
 	lightsaber = new THREE.Mesh( lsGeometry, lsMaterial );
 	lightsaber.position.setY(15);
-
+	var color = "#00ffff"
 	var glowGeometry = new THREE.CylinderGeometry(0.5, 0.5, 30, 20);
-	var glowMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.5, color: "#00ffff" });
+	var glowMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.5, color: color});
 	var glow = new THREE.Mesh(glowGeometry, glowMaterial);
 
 	lightsaber.add(glow);
