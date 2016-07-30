@@ -460,6 +460,9 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   	if(result){
   		socket.emit('sendhit');
   		result.velocity = new THREE.Vector3(1, 0, 0);
+  		//Updates "score" to document each time enemy is hit
+  		score++;
+  		document.getElementById("score").innerHTML = score;
   	}
   });
 
