@@ -112,9 +112,10 @@
         </div>
     </div>
     <div id="container">
-        <!--Displaying/Updating Score-->
+        <!--Displaying/Updating Score or Timer above Canvas-->
         <div style="position: absolute; z-index: 1; left: 50%; top: 10%; width:50px; height:40px; background-color: blue;">
             <p id="score" style="size: 30px">YO</p>
+            <!--Used to increment value of id="score"-->
             <script>
                 var score = setInterval(function(){increment()},1000);
                 function increment(){
