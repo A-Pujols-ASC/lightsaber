@@ -6,7 +6,7 @@ function Corridor(textureLoader){
 
 	var wallGeometry = new THREE.PlaneGeometry(100, 150);
 	
-	var wallTexture = textureLoader.load( "/textures/wall_metal.jpg" );
+	var wallTexture = textureLoader.load("/textures/wall_deathstar.jpg");
 	wallTexture.wrapS = THREE.RepeatWrapping;
 	wallTexture.wrapT = THREE.RepeatWrapping;
 	wallTexture.repeat.set(5, 5);
@@ -64,7 +64,7 @@ module.exports = Corridor;
 },{}],2:[function(require,module,exports){
 function Enemy(){
 	var enemyGeometry = new THREE.CubeGeometry(4.5, 2, 2);
-	var enemyMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.75, color: "#00baff"});
+	var enemyMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.75, color: "#ff3346"});
 	var enemy = new THREE.Mesh(enemyGeometry, enemyMaterial);
 	return enemy;
 }
@@ -121,7 +121,7 @@ function Lightsaber(){
 	lightsaber.position.setY(15);
 
 	var glowGeometry = new THREE.CylinderGeometry(0.5, 0.5, 30, 20);
-	var glowMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.5, color: "#ffaaf8" });
+	var glowMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.5, color: "#00ffff" });
 	var glow = new THREE.Mesh(glowGeometry, glowMaterial);
 
 	lightsaber.add(glow);

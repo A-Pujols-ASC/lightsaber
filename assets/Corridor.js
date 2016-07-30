@@ -4,7 +4,7 @@ function Corridor(textureLoader){
 
 	var wallGeometry = new THREE.PlaneGeometry(100, 150);
 	
-	var wallTexture = textureLoader.load( "/textures/wall_metal.jpg" );
+	var wallTexture = textureLoader.load( "/textures/wall_deathstar.jpg" );
 	wallTexture.wrapS = THREE.RepeatWrapping;
 	wallTexture.wrapT = THREE.RepeatWrapping;
 	wallTexture.repeat.set(5, 5);
