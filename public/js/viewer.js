@@ -83,7 +83,7 @@ function setupScene(){
 	console.log(sky);
 	scene.add(sky);
 
-	floQWor = new Floor(textureLoader, renderer);
+	floor = new Floor(textureLoader, renderer);
 	scene.add(floor);
 
 	corridor = new Corridor(textureLoader);

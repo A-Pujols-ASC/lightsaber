@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
     <!-- FIX BUTTON -->
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -15,9 +14,7 @@
     <script src="/js/bundle.js"></script>
     <script>
         var isMobile;
-
         isMobile = false;
-
         if (/Mobi/.test(navigator.userAgent)) {
             isMobile = true;
         }
@@ -31,22 +28,18 @@
             font-weight: 300;
             color: white;
         }
-        
         table,
         th,
         td {
             border-collapse: collapse;
         }
-        
         th,
         td {
             padding: 15px;
         }
-        
         a {
             color: white;
         }
-        
         canvas {
             bottom: 0;
             left: 0;
@@ -57,7 +50,6 @@
             height: 100%;
             background-color: black;
         }
-        
         .confirm-button {
             width: auto;
             height: auto;
@@ -66,37 +58,30 @@
             display: none;
             margin: 10px;
         }
-        
         .confirm-button span {
             padding: 10px;
             font-size: 18px;
         }
-        
         .landing {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
         .align-item {
             max-width: 50%;
         }
-        
         #room-url {
             font-size: 24px;
         }
-        
         #room-url a {
             text-decoration: none;
         }
     </style>
 </head>
-
 <body>
     <div class="landing">
         <div class="align-item">
             <center>
-
                 <img src="/textures/allstarwars.png" width="240" align="middle">
                 <p>First, select the lightsaber you would like to wield.</p>
 
@@ -107,20 +92,17 @@
                         <td><img class="lightsaber" src="/textures/redsaber.png"></td>
                     </tr>
                 </table>
-
                 <style>
                     .lightsaber {
                         cursor: pointer;
                     }
                 </style>
-
                 <p>Next, enter the website on a mobile device to begin.</p>
             </center>
             <br>
             <center>
                 <span style="color:#47dcff" id="room-url"><%= roomURL %></span>
             </center>
-
             <center>
                 <div class="confirm-button">
                     <span><b>CONNECTED!</b></span>
@@ -132,5 +114,4 @@
     <div id="container">
     </div>
 </body>
-
 </html>
