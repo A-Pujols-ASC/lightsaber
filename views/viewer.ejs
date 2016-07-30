@@ -116,11 +116,9 @@
         <div style="position: absolute; z-index: 1; left: 50%; top: 10%; width:50px; height:40px; background-color: blue;">
             <p id="score" style="size: 30px">YO</p>
             <script>
-                var score = setInterval(increment,1000);
                 function increment(){
-                    score++;
-                }
-               document.getElementById("score").innerHTML = score; 
+                    setInterval(function(){score++;document.getElementById("score").innerHTML = score;},1000);
+                } 
             </script>
         </div>
     </div>
