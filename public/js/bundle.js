@@ -9,13 +9,13 @@ function changeBlue(){
 		document.getElementById("greenSaber").style["background-color"] = "";
 		color = "#00ffff";
 }
-function changeGreen{
+function changeGreen(){
 		document.getElementById("greenSaber").style["background-color"] = "green";
 		document.getElementById("blueSaber").style["background-color"] = "";
 		document.getElementById("redSaber").style["background-color"] = "";
 		color = "#05B805";
 } 
-function changeRed{
+function changeRed(){
 		document.getElementById("redSaber").style["background-color"] = "red";
 		document.getElementById("blueSaber").style["background-color"] = "";
 		document.getElementById("greenSaber").style["background-color"] = "";
