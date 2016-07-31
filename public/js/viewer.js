@@ -72,27 +72,25 @@ function init(){
 	$('.confirm-button').hide();
 	container.appendChild(domElement);
 	//creates Score/timer HUD
-	function loadHUD{
-		var divHUD = document.createElement("div"); 
-		divHUD.style.position = "absolute"; 
-		divHUD.style.z-index = "1"; 
-		divHUD.style.left = "50"; 
-		divHUD.style.top = "10%"; 
-		divHUD.style.width = "50px"; 
-		divHUD.style.height = "40px";
-		divHUD.style.background-color = "blue";
-		document.body.appendChild(divHUD); 
-		var timerHUD = document.createElement("p");
-		timerHUD.id = "timer";
-		timerHUD.style.size = "30px";
-		timerHUD.innerHTML = "Timer";
-		divHUD.appendChild(timerHUD);
-		var scoreHUD = document.createElement("p");
-		scoreHUD.id = "score";
-		scoreHUD.style.size = "30px";
-		scoreHUD.innerHTML = "Score";
-		divHUD.appendChild(scoreHUD);
-	}
+	var divHUD = document.createElement("div"); 
+	divHUD.style.position = "absolute"; 
+	divHUD.style.z-index = "1"; 
+	divHUD.style.left = "50"; 
+	divHUD.style.top = "10%"; 
+	divHUD.style.width = "50px"; 
+	divHUD.style.height = "40px";
+	divHUD.style.background-color = "blue";
+	container.body.appendChild(divHUD); 
+	var timerHUD = document.createElement("p");
+	timerHUD.id = "timer";
+	timerHUD.style.size = "30px";
+	timerHUD.innerHTML = "Timer";
+	divHUD.appendChild(timerHUD);
+	var scoreHUD = document.createElement("p");
+	scoreHUD.id = "score";
+	scoreHUD.style.size = "30px";
+	scoreHUD.innerHTML = "Score";
+	divHUD.appendChild(scoreHUD);
 	domElement.addEventListener('click', fullscreen, false);
 	setupScene();
 }
