@@ -73,12 +73,6 @@ function init(){
 	container.appendChild(domElement);
 	domElement.addEventListener('click', fullscreen, false);
 	setupScene();
-	//Increments our timer by 1 second
-	var timer = setInterval(function(){increment()},1000);
-	function increment(){
-    	timer++;
-    	document.getElementById("timer").innerHTML = timer; 	
-	}
 }
 
 function setupScene(){
@@ -114,6 +108,12 @@ function setupScene(){
     //scene.add(axis);
 
     requestAnimationFrame(animate);
+    //Increments our timer by 1 second
+	var timer = setInterval(function(){increment()},1000);
+	function increment(){
+    	timer++;
+    	document.getElementById("timer").innerHTML = timer; 	
+	}
 }
 
 function setupGame() {
