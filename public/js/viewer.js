@@ -70,7 +70,8 @@ function init(){
 
 	$('.landing').hide();
 	$('.confirm-button').hide();
-	container.appendChild(domElement);
+	document.getElementById("mainHUD").style.display="";
+	container.appendChild(domElement);.display=""
 	domElement.addEventListener('click', fullscreen, false);
 	setupScene();
 }
