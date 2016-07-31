@@ -3,6 +3,7 @@ var score = 0;
 //Modifies color of the lightsaber based on option clicked (default is blue)
 color = "#00ffff"
 function changeBlue(){
+	document.getElementById("blueSaber").style["background-color"] = "blue";
 	color = "#00ffff";
 }
 function changeGreen(){
