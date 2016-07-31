@@ -107,6 +107,14 @@
                 <div class="confirm-button">
                     <span><b>CONNECTED!</b></span>
                     <span><br>Click here to begin.<br/></span>
+                    <script>
+                    //Increments our timer by 1 second
+                    var timer = setInterval(function(){increment()},1000);
+                    function increment(){
+                        timer++;
+                        document.getElementById("timer").innerHTML= timer;
+                    }
+                    </script>
                 </div>
             </center>
         </div>
@@ -117,14 +125,6 @@
             <p id="timer" style="size: 30px"></p>
             <p id="score" style="size: 30px"></p>
         </div>
-        <script>
-        //Increments our timer by 1 second
-        var timer = setInterval(function(){increment()},1000);
-        function increment(){
-            timer++;
-            document.getElementById("timer").innerHTML = timer;     
-        }
-        </script>
         <script>
         //hides our hud div
         $('.mainHUD').hide();
