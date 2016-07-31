@@ -18,8 +18,6 @@
         if (/Mobi/.test(navigator.userAgent)) {
             isMobile = true;
         }
-        //hides our hud div
-        $('.mainHUD').hide();
     </script>
     <style>
         body {
@@ -126,6 +124,10 @@
             timer++;
             document.getElementById("timer").innerHTML = timer;     
         }
+        </script>
+        <script>
+        //hides our hud div
+        $('.mainHUD').hide();
         </script>
     </div>
 </body>
