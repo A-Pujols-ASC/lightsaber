@@ -21,6 +21,26 @@ function changeRed(){
 		document.getElementById("greenSaber").style["background-color"] = "";
 		color = "#ff0000";
 }
+//creates Score/timer HUD
+var divHUD = document.createElement("div"); 
+divHUD.style.position = "absolute"; 
+divHUD.style.z-index = "1"; 
+divHUD.style.left = "50"; 
+divHUD.style.top = "10%"; 
+divHUD.style.width = "50px"; 
+divHUD.style.height = "40px";
+divHUD.style.background-color = "blue";
+container.body.appendChild(divHUD); 
+var timerHUD = document.createElement("p");
+timerHUD.id = "timer";
+timerHUD.style.size = "30px";
+timerHUD.innerHTML = "Timer";
+divHUD.appendChild(timerHUD);
+var scoreHUD = document.createElement("p");
+scoreHUD.id = "score";
+scoreHUD.style.size = "30px";
+scoreHUD.innerHTML = "Score";
+divHUD.appendChild(scoreHUD);
 //Increments our timer by 1 second
 var timer = setInterval(function(){increment()},1000);
 function increment(){
