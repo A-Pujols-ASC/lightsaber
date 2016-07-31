@@ -70,6 +70,22 @@
         .align-item {
             max-width: 50%;
         }
+        #mainHUD {
+            display: none;
+            position: absolute; 
+            z-index: 1; 
+            left: 50%; 
+            top: 10%; 
+            width:50px; 
+            height:40px; 
+            background-color: blue;
+        }
+        #timer {
+            size: 30px;
+        }
+        #score {
+            size: 30px;
+        }
         #room-url {
             font-size: 24px;
         }
@@ -113,9 +129,9 @@
     </div>
     <div id="container">
         <!--Displaying/Updating Score or Timer above Canvas-->
-        <div id="mainHUD" style="position: absolute; z-index: 1; left: 50%; top: 10%; width:50px; height:40px; background-color: blue;">
-            <p id="timer" style="size: 30px"></p>
-            <p id="score" style="size: 30px"></p>
+        <div id="mainHUD">
+            <p id="timer"></p>
+            <p id="score"></p>
             <script>
                 //Increments our timer by 1 second
                 var timer = setInterval(function(){increment()},1000);
@@ -125,14 +141,6 @@
                 }
             </script>
         </div>
-        <script>
-        //hides our hud div
-        if (start==false){
-            document.getElementById("mainHUD").style.display = "none";
-        } else {
-            document.getElementById("mainHUD").style.display = "";
-        }
-        </script>
     </div>
 </body>
 </html>
