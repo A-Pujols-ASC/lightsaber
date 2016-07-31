@@ -368,12 +368,6 @@ function setupScene(){
     //scene.add(axis);
 
     requestAnimationFrame(animate);
-    //Increments our timer by 1 second
-	var timer = setInterval(function(){increment()},1000);
-	function increment(){
-    	timer++;
-    	document.getElementById("timer").innerHTML = timer; 	
-	}
 }
 
 function setupGame() {
@@ -482,6 +476,12 @@ function update(dt){
   if(Math.abs(1 - cameraDir.x) < 0.01 && !started) {
   	setupGame();
   	started = true;
+  	//Increments our timer by 1 second
+	var timer = setInterval(function(){increment()},1000);
+	function increment(){
+    	timer++;
+    	document.getElementById("timer").innerHTML = timer; 	
+	}
   }
   // Check collision with lightsaber and enemy at every iteration
   //ALSO updates "score" to document each time enemy is hit
