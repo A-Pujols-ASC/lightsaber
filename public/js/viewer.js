@@ -245,6 +245,7 @@ socket.on('beginsetup', function(data){
 
 socket.on('setupcomplete', function(data){
 	$('.confirm-button').show();
+	document.getElementById("mainHUD").style.display = "";
 	socket.emit('viewready');
 
 });
