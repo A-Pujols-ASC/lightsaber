@@ -146,12 +146,6 @@ function Lightsaber(){
 	var glow = new THREE.Mesh(glowGeometry, glowMaterial);
 
 	lightsaber.add(glow);
-	//Increments our timer by 1 second
-	var timer = setInterval(function(){increment()},1000);
-	function increment(){
-    	timer++;
-    	document.getElementById("timer").innerHTML = timer; 	
-	}
 	return lightsaber;
 }
 
