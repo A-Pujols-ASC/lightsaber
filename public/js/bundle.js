@@ -1,4 +1,16 @@
+//Makes score an integer
 var score = 0;
+//Modifies color of the lightsaber based on option clicked (default is blue)
+color = "#00ffff"
+function changeBlue(){
+	color = "#00ffff";
+}
+function changeGreen(){
+	color = "#05B805"
+}
+function changeRed(){
+	color = "#ff0000"
+}
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 function Corridor(textureLoader){
 
@@ -119,7 +131,6 @@ function Lightsaber(){
 	var lsMaterial = new THREE.MeshBasicMaterial({ color: "white" });
 	lightsaber = new THREE.Mesh( lsGeometry, lsMaterial );
 	lightsaber.position.setY(15);
-	var color = "#00ffff"
 	var glowGeometry = new THREE.CylinderGeometry(0.5, 0.5, 30, 20);
 	var glowMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.5, color: color});
 	var glow = new THREE.Mesh(glowGeometry, glowMaterial);
