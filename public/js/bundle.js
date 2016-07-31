@@ -2,6 +2,12 @@
 var score = 0;
 //Modifies color of the lightsaber based on option clicked (default is blue)
 //also highlights the option selected, and dehighlights the rest
+//Increments our timer by 1 second
+		var timer = setInterval(function(){increment()},1000);
+		function increment(){
+    		timer++;
+    		document.getElementById("timer").innerHTML = timer; 	
+		}
 color = "#00ffff"
 function changeBlue(){
 		document.getElementById("blueSaber").style["background-color"] = "blue";
