@@ -1,5 +1,5 @@
-//hides our hud div
-$('.mainHUD').hide();
+
+
 var socket = io();
 
 var scene,

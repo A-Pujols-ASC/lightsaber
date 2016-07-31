@@ -1,3 +1,5 @@
+//hides our hud div
+$('.mainHUD').hide();
 //Makes score an integer
 var score = 0;
 //Modifies color of the lightsaber based on option clicked (default is blue)
