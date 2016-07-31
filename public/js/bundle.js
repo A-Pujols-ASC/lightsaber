@@ -3,24 +3,25 @@ var score = 0;
 //Modifies color of the lightsaber based on option clicked (default is blue)
 //also highlights the option selected, and dehighlights the rest
 color = "#00ffff"
-function changeColor(){
-	if(document.getElementById("blueSaber").clicked == true){
+function changeBlue(){
 		document.getElementById("blueSaber").style["background-color"] = "blue";
 		document.getElementById("redSaber").style["background-color"] = "";
 		document.getElementById("greenSaber").style["background-color"] = "";
 		color = "#00ffff";
-	} else if(document.getElementById("greenSaber").clicked == true){
+}
+function changeGreen{
 		document.getElementById("greenSaber").style["background-color"] = "green";
 		document.getElementById("blueSaber").style["background-color"] = "";
 		document.getElementById("redSaber").style["background-color"] = "";
 		color = "#05B805";
-	} else if(document.getElementById("redSaber").clicked == true){
+} 
+function changeRed{
 		document.getElementById("redSaber").style["background-color"] = "red";
 		document.getElementById("blueSaber").style["background-color"] = "";
 		document.getElementById("greenSaber").style["background-color"] = "";
-		color = "#ff0000"
-	}
+		color = "#ff0000";
 }
+		
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 function Corridor(textureLoader){
 
