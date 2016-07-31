@@ -127,7 +127,11 @@
         </div>
         <script>
         //hides our hud div
-        document.getElementById("mainHUD").style.display = "none";
+        if (start==false){
+            document.getElementById("mainHUD").style.display = "none";
+        } else {
+            document.getElementById("mainHUD").style.display = "";
+        }
         </script>
     </div>
 </body>

@@ -522,6 +522,7 @@ socket.on('beginsetup', function(data){
 
 socket.on('setupcomplete', function(data){
 	$('.confirm-button').show();
+	var start = true;
 	socket.emit('viewready');
 
 });
