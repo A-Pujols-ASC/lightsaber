@@ -484,11 +484,7 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   		result.velocity = new THREE.Vector3(1, 0, 0);
   		score++;
   		if (score==1){
-  			var timer = setInterval(function(){increment()},1000);
-        	function increment(){
-        	timer++;
-            document.getElementById("timer").innerHTML = timer; 
-        	}
+  			timer = 0;
   		}
   		document.getElementById("score").innerHTML = score;
   	}
@@ -514,7 +510,12 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
 
 $(document).ready(function(){
 	$('.confirm-button').click(function(){
-		init();
+		init()
+		var timer = setInterval(function(){increment()},1000);
+        function increment(){
+        	timer++;
+            document.getElementById("timer").innerHTML = timer; 
+		}
 		animate();
 	});
 });
