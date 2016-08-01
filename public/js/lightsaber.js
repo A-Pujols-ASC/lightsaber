@@ -42,7 +42,7 @@ socket.on('viewready', function(data){
 });
 
 
-var muted = false,
+var muted = true,
 	muteClass = "volume fa fa-volume-off",
 	volumeClass = "volume fa fa-volume-up",
 	volumeButton = document.getElementsByClassName("volume")[0],
