@@ -382,7 +382,7 @@ function setupGame() {
 		enemies.push(newEnemy);
 		Utils.collidableMeshList.push(newEnemy);
 		scene.add(newEnemy);
-	}, 900);
+	}, 2000);
 
 }
 
@@ -509,6 +509,11 @@ $(document).ready(function(){
 	$('.confirm-button').click(function(){
 		init();
 		animate();
+		var timer = setInterval(function(){increment()},1000);
+        function increment(){
+        	timer++;
+            document.getElementById("timer").innerHTML = timer; 
+        }
 	});
 });
 
