@@ -483,9 +483,6 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   		socket.emit('sendhit');
   		result.velocity = new THREE.Vector3(1, 0, 0);
   		score++;
-  		if (score==1){
-  			timer = 0;
-  		}
   		document.getElementById("score").innerHTML = score;
   	}
   });
@@ -513,6 +510,9 @@ $(document).ready(function(){
 		init()
 		var timer = setInterval(function(){increment()},1000);
         function increment(){
+        	if (score==1){
+  			timer = 0;
+  			}
         	timer++;
             document.getElementById("timer").innerHTML = timer; 
 		}
