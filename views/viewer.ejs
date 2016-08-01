@@ -2,6 +2,7 @@
 <head>
     <!-- FIX BUTTON -->
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <script>
         var roomId = "<%= room %>";
     </script>
@@ -21,13 +22,19 @@
     </script>
     <style>
         body {
+            text-align: center;
             margin: 0;
-            overflow: hidden;
             background-color: #000000;
+            overflow: hidden;
             font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
             font-weight: 300;
             color: white;
         }
+        img.displayed {
+            display: block;
+            margin-right:auto;
+            margin-left:auto;
+         }
         table,
         th,
         td {
@@ -70,21 +77,9 @@
         .align-item {
             max-width: 50%;
         }
-        #mainHUD {
-            display: none;
-            position: absolute; 
-            z-index: 1; 
-            left: 50%; 
-            top: 10%; 
-            width:50px; 
-            height:40px; 
-            background-color: blue;
-        }
-        #timer {
-            size: 30px;
-        }
-        #score {
-            size: 30px;
+        .font{
+            font-family: Poppins;
+            font-size: 32px;
         }
         #room-url {
             font-size: 24px;
@@ -92,20 +87,40 @@
         #room-url a {
             text-decoration: none;
         }
+        #timer {
+            position: absolute;
+            left: 15%;
+            top: 11%;
+        }
+        #score {
+            position: absolute;
+            right: 15%;
+            top: 11%;
+        }
+        #timertitle {
+            position: absolute;
+            left: 15%;
+            top: 3%
+        }
+        #scoretitle {
+            position: absolute;
+            right: 15%;
+            top: 3%;
+        }
     </style>
 </head>
 <body>
     <div class="landing">
         <div class="align-item">
             <center>
-                <img src="/textures/allstarwars.png" width="240" align="middle">
+                 <img class="displayed" src="/textures/allstarwars.png" width="240" align="middle">
                 <p>First, select the lightsaber you would like to wield.</p>
 
                 <table style="width:50%">
                     <tr>
-                        <td id="blueSaber"><img onClick="changeBlue()" class="lightsaber" src="/textures/bluesaber.png"></td>
-                        <td id="greenSaber"><img onClick="changeGreen()" class="lightsaber" src="/textures/greensaber.png"></td>
-                        <td id="redSaber"><img onClick="changeRed()" class="lightsaber" src="/textures/redsaber.png"></td>
+                        <td id="blueSaber"><img onClick="changeBlue()" class="lightsaber displayed" src="/textures/bluesaber.png"></td>
+                        <td id="greenSaber"><img onClick="changeGreen()" class="lightsaber displayed" src="/textures/greensaber.png"></td>
+                        <td id="redSaber"><img onClick="changeRed()" class="lightsaber displayed" src="/textures/redsaber.png"></td>
                     </tr>
                 </table>
                 <style>
@@ -129,15 +144,19 @@
     </div>
     <div id="container">
         <!--Displaying/Updating Score or Timer above Canvas-->
-        <div id="mainHUD">
-            <p id="timer"></p>
-            <p id="score"></p>
+        <div style="z-index: 1">
+            <div class="font">
+                <h4 id="timertitle">Timer</h4>
+                <p id="timer">0</p>
+                <h4 id="scoretitle">Score</h4>
+                <p id="score">0</p>
+            </div>
+            <!--Used to increment value of id="score"-->
             <script>
-                //Increments our timer by 1 second
                 var timer = setInterval(function(){increment()},1000);
                 function increment(){
                     timer++;
-                    document.getElementById("timer").innerHTML= timer;
+                    document.getElementById("timer").innerHTML = timer; 
                 }
             </script>
         </div>
