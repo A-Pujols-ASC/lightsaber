@@ -508,14 +508,13 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
 $(document).ready(function(){
 	$('.confirm-button').click(function(){
 		init()
-        	if (score>=1){
-        		var timer = setInterval(function(){increment()},1000);
-        		function increment(){
-        		timer++;
-            	document.getElementById("timer").innerHTML = timer;
-            	} 
-			}	
-		}
+    	if (score>=1){
+    		var timer = setInterval(function(){increment()},1000);
+    		function increment(){
+    		timer++;
+        	document.getElementById("timer").innerHTML = timer;
+        	} 
+		}	
 		animate();
 	});
 });
