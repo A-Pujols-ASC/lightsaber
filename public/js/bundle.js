@@ -478,7 +478,7 @@ function update(dt){
   }
   //Makes timer start once one is hit
   if (score>=1){
-	var timer = setInterval(function(){increment()},1000);
+	var timer = setTimeout(function(){increment()},1000);
 	function increment(){
 		timer++;
 		document.getElementById("timer").innerHTML = timer;
