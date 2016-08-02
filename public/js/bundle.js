@@ -476,6 +476,14 @@ function update(dt){
   	setupGame();
   	started = true;
   }
+  //Makes timer start once one is hit
+  if (score>=1){
+	var timer = setInterval(function(){increment()},1000);
+	function increment(){
+		timer++;
+		document.getElementById("timer").innerHTML = timer;
+		} 
+	}	
   // Check collision with lightsaber and enemy at every iteration
   //ALSO updates "score" to document each time enemy is hit
 Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
@@ -508,13 +516,6 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
 $(document).ready(function(){
 	$('.confirm-button').click(function(){
 		init()
-    	if (score>=1){
-    		var timer = setInterval(function(){increment()},1000);
-    		function increment(){
-    		timer++;
-        	document.getElementById("timer").innerHTML = timer;
-        	} 
-		}	
 		animate();
 	});
 });
