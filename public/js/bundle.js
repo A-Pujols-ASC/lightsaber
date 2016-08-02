@@ -478,12 +478,12 @@ function update(dt){
   }
   //Makes timer start once one is hit
   if (score>=1){
-	var timer = setInterval(function(){increment()},1000);
-	function increment(){
-		timer++;
-		document.getElementById("timer").innerHTML = timer;
-		}
-	clearInterval(timer) 
+	var timer = setInterval(function(){ myTimer() }, 1000);
+	function myTimer() {
+	    var d = new Date();
+	    var t = d.toLocaleTimeString();
+	    document.getElementById("timer").innerHTML = t;
+	}
 	}	
   // Check collision with lightsaber and enemy at every iteration
   //ALSO updates "score" to document each time enemy is hit
