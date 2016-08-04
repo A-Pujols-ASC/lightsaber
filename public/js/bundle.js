@@ -126,8 +126,8 @@ module.exports = Floor;
 },{}],4:[function(require,module,exports){
 function Hand(camera){
 	/* HAND */
-	var handGeometry = new THREE.CubeGeometry(3, 3, 3 );
-	var handMaterial = new THREE.MeshBasicMaterial({color: "#583b13"});
+	var handGeometry = new THREE.CylinderGeometry(.7, .7, 6, 7); 
+	var handMaterial = new THREE.MeshBasicMaterial({color: "#545355"}); 
 	hand = new THREE.Mesh(handGeometry, handMaterial);
 	hand.position.set(15, 6, camera.position.z / 2);
 	return hand;
@@ -476,15 +476,6 @@ function update(dt){
   	setupGame();
   	started = true;
   }
-  //Makes timer start once one is hit
-  if (score>=1){
-	var timer = setInterval(function(){ myTimer() }, 1000);
-	function myTimer() {
-	    var d = new Date();
-	    var t = d.toLocaleTimeString();
-	    document.getElementById("timer").innerHTML = t;
-	}
-	}	
   // Check collision with lightsaber and enemy at every iteration
   //ALSO updates "score" to document each time enemy is hit
 Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
