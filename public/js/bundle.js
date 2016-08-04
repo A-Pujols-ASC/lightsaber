@@ -88,6 +88,7 @@ function Enemy(){
 	var enemyGeometry = new THREE.CylinderGeometry(.7, .7, 6);
 	var enemyMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.75, color: "#ff3346"});
 	var enemy = new THREE.Mesh(enemyGeometry, enemyMaterial);
+	enemy.rotation.z = 100; 
 	return enemy;
 }
 
