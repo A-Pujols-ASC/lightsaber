@@ -234,12 +234,12 @@ Utils.prototype.cameraLookDir =  function(camera) {
 }
 
 Utils.prototype.debugAxes = function(axisLength, scene){
-    //Shorten the vertex function
+    // Shorten the vertex function
     function v(x,y,z){ 
             return new THREE.Vector3(x,y,z); 
     }
     
-    //Create axis (point1, point2, colour)
+    // Create axis (point1, point2, colour)
     function createAxis(p1, p2, color){
             var line, lineGeometry = new THREE.Geometry(),
             lineMat = new THREE.LineBasicMaterial({color: color, lineWidth: 1});
