@@ -17,7 +17,7 @@
 			color: white;
 			text-align: center;
 			font-size: 24px;
-			height:100%;
+            height:100%;
 		}
 		.note {
 			font-size: 14px;
@@ -28,39 +28,40 @@
 		#audio {
 			display: none;
 		}
-		#alpha {
-       		position: absolute;
+        #alpha {
+            position: absolute;
             z-index: 50;
             top: 45%;
             left: 45%;
         }
         #beta {
-	        position: absolute;
-	        z-index: 50;
-	        top: 50%;
-	        left: 45%;
- 		}
- 		#gamma {
-			position: absolute;
-	 		z-index: 50;
-	 		top: 55%;
-			left: 45%;
- 		}
- 		#center {
- 			height:100%;
- 		 }
+            position: absolute;
+            z-index: 50;
+            top: 50%;
+            left: 45%;
+        }
+        #gamma {
+            position: absolute;
+            z-index: 50;
+            top: 55%;
+            left: 45%;
+        }
+        #center {
+            height:100%;
+        }
 	</style>
 	</head>
 	<body>
 		<div class="alignment"></div>
-		<div class="align-item"></div>
-				<div id="center">
+        <div class="align-item"></div>
+            <div id="center">
 				<img src="/textures/lightsaber.png" height="100%">
 				<br>
 				<div id="alpha">X: <span id="alpha"></span></div>
-				<div id="beta">Y: <span id="beta"></span></div>
-				<div id="gamma">Z: <span id="gamma"></span></div>
+                <div id="beta">Y: <span id="beta"></span></div>
+                <div id="gamma">Z: <span id="gamma"></span></div>
 			</div>
+
 		<script src="/js/lightsaber.js"></script>
 	</body>
 </html>

@@ -25,12 +25,12 @@
             text-align: center;
             margin: 0;
             background-color: #000000;
+            overflow: hidden;
             font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
             font-weight: 300;
             color: white;
         }
-        img.displayed {
-            display: block;
+        img{
             margin-right:auto;
             margin-left:auto;
         }
@@ -38,6 +38,9 @@
         th,
         td {
             border-collapse: collapse;
+        }
+        th,
+        td {
             padding: 15px;
         }
         a {
@@ -54,13 +57,12 @@
             background-color: black;
         }
         .confirm-button {
-            width: 75%;
+            width: auto;
+            height: auto;
             color: white;
-            border-radius: 10px;
             background-color: #22c6ef;
             display: none;
             margin: 10px;
-            padding: 15px;
             transition: background-color .5s;
         }
         .confirm-button span {
@@ -70,9 +72,6 @@
         .confirm-button:hover {
             background-color: rgba(34, 198, 239, 0.68);
             cursor: pointer;
-        }       
-        .lightsaber {
-            cursor: pointer;
         }
         .landing {
             display: flex;
@@ -80,39 +79,34 @@
             justify-content: center;
         }
         .align-item {
-            max-width: 80%;
+            max-width: 50%;
         }
         .font{
             font-family: Poppins;
             font-size: 32px;
         }
-        .saber{
-            opacity: 0.5;
-            transition: opacity .5s;
-        }
-        .saber:hover{
-            opacity: 1;
-        }
-        #qrcode{
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border-color: #22c6ef;
-            border-radius: 10px;
-            border-style: solid;
-        }
         #room-url {
+            font-size: 24px;
         }
         #room-url a {
             text-decoration: none;
         }
+        #timer {
+            position: absolute;
+            left: 15%;
+            top: 11%;
+        }
         #score {
-            z-index: 1;
             position: absolute;
             right: 15%;
-            top: 10%;
+            top: 11%;
+        }
+        #timertitle {
+            position: absolute;
+            left: 15%;
+            top: 3%
         }
         #scoretitle {
-            z-index: 1;
             position: absolute;
             right: 15%;
             top: 3%;
@@ -123,18 +117,29 @@
     <div class="landing">
         <div class="align-item">
             <center>
-                <img class="displayed" src="/textures/allstarwars.png" width="250px" align="middle">
+                <img src="/textures/allstarwars.png" width="240" align="middle">
                 <p>First, select the lightsaber you would like to wield.</p>
+
                 <table style="width:50%">
                     <tr>
-                        <td class="saber" id="blueSaber"><img onClick="changeBlue()" class="lightsaber displayed" src="/textures/bluesaber.png"></td>
-                        <td class="saber" id="greenSaber"><img onClick="changeGreen()" class="lightsaber displayed" src="/textures/greensaber.png"></td>
-                        <td class="saber" id="redSaber"><img onClick="changeRed()" class="lightsaber displayed" src="/textures/redsaber.png"></td>
+                        <td id="blueSaber"><img onClick="changeBlue()" class="lightsaber" src="/textures/bluesaber.png"></td>
+                        <td id="greenSaber"><img onClick="changeGreen()" class="lightsaber" src="/textures/greensaber.png"></td>
+                        <td id="redSaber"><img onClick="changeRed()" class="lightsaber" src="/textures/redsaber.png"></td>
                     </tr>
                 </table>
+                <style>
+                    .lightsaber {
+                        cursor: pointer;
+                    }
+                </style>
                 <p>Next, enter the website or scan the QR code on a mobile device to begin.</p>
-                <img id="qrcode" src="">
-                <span style="color:#47dcff; font-size: 26px;" id="room-url"><div style="padding-bottom:25px;" id="room-link"><%= roomURL %></div></span>
+            </center>
+            <br>
+            <center>
+                <span style="color:#47dcff" id="room-url"><%= roomURL %></span>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+%= roomURL %>
+            </center>
+            <center>
                 <div class="confirm-button">
                     <span><b>CONNECTED!</b></span>
                     <span><br>Click here to begin.<br/></span>
@@ -143,15 +148,15 @@
         </div>
     </div>
     <div id="container">
+        <!--Displaying/Updating Score or Timer above Canvas-->
         <div style="z-index: 1">
             <div class="font">
-<!--
                 <h4 id="timertitle">Timer</h4>
                 <p id="timer">0</p>
--->
-                <h4 id="scoretitle" style="display:none;">Score</h4>
-                <p id="score" style="display:none;">0</p>
+                <h4 id="scoretitle">Score</h4>
+                <p id="score">0</p>
             </div>
+            <!--Used to increment value of id="score"-->
             <script>
                 var timer = setInterval(function(){increment()},1000);
                 function increment(){
@@ -160,11 +165,6 @@
                 }
             </script>
         </div>
-        
     </div>
-    <script>
-        var qrimg = document.getElementById("room-link").innerHTML; document.getElementById("qrcode").src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data="+qrimg;
-        console.log(qrimg);
-    </script>
 </body>
 </html>

@@ -70,7 +70,7 @@ function init(){
 
 	$('.landing').hide();
 	$('.confirm-button').hide();
-	container.appendChild(domElement);.display=""
+	container.appendChild(domElement);
 	domElement.addEventListener('click', fullscreen, false);
 	setupScene();
 }
@@ -83,7 +83,7 @@ function setupScene(){
 	console.log(sky);
 	scene.add(sky);
 
-	floor = new Floor(textureLoader, renderer);
+	floQWor = new Floor(textureLoader, renderer);
 	scene.add(floor);
 
 	corridor = new Corridor(textureLoader);

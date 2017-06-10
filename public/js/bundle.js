@@ -4,21 +4,21 @@ var score = 0;
 //also highlights the option selected, and dehighlights the rest
 color = "#00ffff"
 function changeBlue(){
-		document.getElementById("blueSaber").style["background-color"] = "whitesmoke";
-		document.getElementById("redSaber").style["background-color"] = "";
-		document.getElementById("greenSaber").style["background-color"] = "";
+		document.getElementById("blueSaber").style["opacity"] = "1";
+		document.getElementById("redSaber").style["opacity"] = "0.5";
+		document.getElementById("greenSaber").style["opacity"] = "0.5";
 		color = "#00ffff";
 }
 function changeGreen(){
-		document.getElementById("greenSaber").style["background-color"] = "whitesmoke";
-		document.getElementById("blueSaber").style["background-color"] = "";
-		document.getElementById("redSaber").style["background-color"] = "";
+		document.getElementById("greenSaber").style["opacity"] = "1";
+		document.getElementById("blueSaber").style["opacity"] = "0.5";
+		document.getElementById("redSaber").style["opacity"] = "0.5";
 		color = "#05B805";
 } 
 function changeRed(){
-		document.getElementById("redSaber").style["background-color"] = "whitesmoke";
-		document.getElementById("blueSaber").style["background-color"] = "";
-		document.getElementById("greenSaber").style["background-color"] = "";
+		document.getElementById("redSaber").style["opacity"] = "1";
+		document.getElementById("blueSaber").style["opacity"] = "0.5";
+		document.getElementById("greenSaber").style["opacity"] = "0.5";
 		color = "#ff0000";
 }
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -47,7 +47,7 @@ function Corridor(textureLoader){
 
 	var doorGeometry = new THREE.PlaneGeometry(70, 150);
 
-	var doorTexture = textureLoader.load( "/textures/door_metal.jpg" );
+	var doorTexture = textureLoader.load( "/textures/floor_metal.jpg" );
 	doorTexture.wrapS = THREE.RepeatWrapping;
 	doorTexture.wrapT = THREE.RepeatWrapping;
 	doorTexture.repeat.set(5, 5);
@@ -85,10 +85,10 @@ function Corridor(textureLoader){
 module.exports = Corridor;
 },{}],2:[function(require,module,exports){
 function Enemy(){
-	var enemyGeometry = new THREE.CylinderGeometry(.7, .7, 12);
+	var enemyGeometry = new THREE.CylinderGeometry(.9, .9, 4, 12);
 	var enemyMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.75, color: "#ff3346"});
 	var enemy = new THREE.Mesh(enemyGeometry, enemyMaterial);
-	enemy.rotation.z = 300; 
+    enemy.rotateZ(Math.PI/2);
 	return enemy;
 }
 
@@ -113,7 +113,6 @@ function Floor(textureLoader, renderer) {
 		map: floorTexture
 	});
 
-
 	// Floor Geometry
 	var floorGeometry = new THREE.PlaneGeometry(500,500);
 	floor = new THREE.Mesh(floorGeometry, floorMaterial);
@@ -126,7 +125,7 @@ function Floor(textureLoader, renderer) {
 module.exports = Floor;
 },{}],4:[function(require,module,exports){
 function Hand(camera){
-	/* HAND */
+	/* HANDLE */
 	var handGeometry = new THREE.CylinderGeometry(.7, .7, 6, 7);
 	var handMaterial = new THREE.MeshBasicMaterial({color: "#545355"});
 	hand = new THREE.Mesh(handGeometry, handMaterial);
@@ -138,7 +137,7 @@ module.exports = Hand;
 },{}],5:[function(require,module,exports){
 function Lightsaber(){
 	/* LIGHTSABER MODEL */
-	var lsGeometry = new THREE.CylinderGeometry(0.4, 0.04, 30, 20);
+	var lsGeometry = new THREE.CylinderGeometry(0.4, 0.4, 30, 20);
 	var lsMaterial = new THREE.MeshBasicMaterial({ color: "white" });
 	lightsaber = new THREE.Mesh( lsGeometry, lsMaterial );
 	lightsaber.position.setY(15);
@@ -156,7 +155,7 @@ function Sky(textureLoader){
 	
 	var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
 	var skyMaterial = new THREE.MeshBasicMaterial({
-		map: textureLoader.load('textures/sky1.jpg'),
+		map: textureLoader.load('textures/floor_metal.jpg'),
 		side: THREE.BackSide});
 	var skyDome = new THREE.Mesh(skyGeometry, skyMaterial);
 	skyDome.rotateY(-Math.PI/2);
@@ -330,6 +329,8 @@ function init(){
 
 	$('.landing').hide();
 	$('.confirm-button').hide();
+    $("#score").fadeIn(500);
+    $("#scoretitle").fadeIn(500);
 	container.appendChild(domElement);
 	domElement.addEventListener('click', fullscreen, false);
 	setupScene();
@@ -383,7 +384,7 @@ function setupGame() {
 		enemies.push(newEnemy);
 		Utils.collidableMeshList.push(newEnemy);
 		scene.add(newEnemy);
-	}, 800);
+	}, 900);
 
 }
 
@@ -523,6 +524,8 @@ socket.on('beginsetup', function(data){
 
 socket.on('setupcomplete', function(data){
 	$('.confirm-button').show();
+	$('#room-link').hide();
+	$('#qrcode').hide();
 	socket.emit('viewready');
 
 });

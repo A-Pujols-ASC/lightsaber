@@ -42,7 +42,7 @@ socket.on('viewready', function(data){
 });
 
 
-var muted = true,
+var muted = false,
 	muteClass = "volume fa fa-volume-off",
 	volumeClass = "volume fa fa-volume-up",
 	volumeButton = document.getElementsByClassName("volume")[0],
@@ -60,15 +60,15 @@ volumeButton.addEventListener("click", function(){
 });
 
 function changeAudio(){
-	if(!muted){
-		for(var i=0; i<hitFiles.length; i++){
-			var newAudio = document.createElement("AUDIO");
-			newAudio.id = "audio";
-			newAudio.src= soundDir+hitFiles[Math.floor(Math.random() * 3)];
-			newAudio.load();
-			hitSounds.push(newAudio);
-		}
-	}
+    if(!muted){
+        for(var si=0; i<hitFiles.length; i++){
+            var newAudio = document.createElement("AUDIO");
+            newAudio.id = "audio";
+            newAudio.src= soundDir+hitFiles[Math.floor(Math.random() * 3)];
+            newAudio.load();
+            hitSounds.push(newAudio);
+        }
+    }
 }
 
 socket.on('playsound', function(data){
