@@ -118,7 +118,7 @@ function Floor(textureLoader, renderer) {
 	floor = new THREE.Mesh(floorGeometry, floorMaterial);
 	floor.rotation.x = -Math.PI / 2;
 
-	//return floor;
+	// return floor;
 	return floor;
 }
 
