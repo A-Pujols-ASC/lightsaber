@@ -59,9 +59,11 @@ volumeButton.addEventListener("click", function(){
 	changeAudio();
 });
 
+changeAudio();
+
 function changeAudio(){
     if(!muted){
-        for(var si=0; i<hitFiles.length; i++){
+        for(var i=0; i<hitFiles.length; i++){
             var newAudio = document.createElement("AUDIO");
             newAudio.id = "audio";
             newAudio.src= soundDir+hitFiles[Math.floor(Math.random() * 3)];

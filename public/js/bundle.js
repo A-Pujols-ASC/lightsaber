@@ -479,7 +479,7 @@ function update(dt){
   	started = true;
   }
   // Check collision with lightsaber and enemy at every iteration
-  //ALSO updates "score" to document each time enemy is hit
+  // ALSO updates "score" to document each time enemy is hit
 Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   	if(result){
   		socket.emit('sendhit');
