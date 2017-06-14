@@ -51,13 +51,13 @@ var muted = false,
 	hitFiles = ["hit1.wav", "hit2.wav", "hit3.wav", "hit4.wav"],
 	hitSounds = [];
 
-volumeButton.addEventListener("click", function(){
-	if(muted){
-		volumeButton.className = volumeClass;
-		muted = false;
-	}	
-	changeAudio();
-});
+// volumeButton.addEventListener("click", function(){
+// 	if(muted){
+// 		volumeButton.className = volumeClass;
+// 		muted = false;
+// 	}	
+// 	changeAudio();
+// });
 
 function changeAudio(){
     if(!muted){
