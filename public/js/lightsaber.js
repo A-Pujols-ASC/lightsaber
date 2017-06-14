@@ -73,4 +73,5 @@ function changeAudio(){
 
 socket.on('playsound', function(data){
 	hitSounds[Math.floor(Math.random() * 3)].play();
+    console.log('Sent from Lightsaber')
 });
