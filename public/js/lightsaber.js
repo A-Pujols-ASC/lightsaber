@@ -35,7 +35,6 @@ socket.on('viewready', function(data){
 			if(JSON.stringify(orientation) != JSON.stringify(oldOrientation)){
 				var calibratedOrientation = {g: orientation.g, b: orientation.b, a: orientation.a - Math.abs(originalAlpha), o: orientation.o}
 				socket.emit('sendorientation', calibratedOrientation);
-                console.log('Sent from Lightsaber')
 				oldOrientation = calibratedOrientation;
 			}
 		});

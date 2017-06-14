@@ -81,7 +81,6 @@ io.on('connection', function (socket) {
 
 	socket.on('sendorientation', function(data){
 		socket.broadcast.to(socket.room).emit('updateorientation',data);
-		console.log('Sent From Server')
 	});
 
 	socket.on('sendhit', function(data){
