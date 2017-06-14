@@ -2,28 +2,33 @@
 var score = 0;
 //Modifies color of the lightsaber based on option clicked (default is blue)
 //also highlights the option selected, and dehighlights the rest
-lightsaberColor = "#00ffff"
-enemyColor = "#ff3346"
+lightsaberColor = "#00ffff";
+enemyColor = "#ff3346";
+var timer = 60;
+//Modifies color of the lightsaber based on option clicked (default is blue)
+//also highlights the option selected, and dehighlights the rest
+var lightsaberColor = "#00ffff";
+var enemyColor = "#ff3346";
 function changeBlue(){
 		document.getElementById("blueSaber").style["opacity"] = "1";
 		document.getElementById("redSaber").style["opacity"] = "0.5";
 		document.getElementById("greenSaber").style["opacity"] = "0.5";
-		lightsaberColor = "#00ffff";
-        enemyColor = "#ff3346"
+        lightsaberColor = "#00ffff";
+        enemyColor = "#ff3346";
 }
 function changeGreen(){
 		document.getElementById("greenSaber").style["opacity"] = "1";
 		document.getElementById("blueSaber").style["opacity"] = "0.5";
 		document.getElementById("redSaber").style["opacity"] = "0.5";
 		lightsaberColor = "#05B805";
-        enemyColor = "#ff3346"
+        enemyColor = "#ff3346";
 } 
 function changeRed(){
 		document.getElementById("redSaber").style["opacity"] = "1";
 		document.getElementById("blueSaber").style["opacity"] = "0.5";
 		document.getElementById("greenSaber").style["opacity"] = "0.5";
 		lightsaberColor = "#ff0000";
-        enemyColor = "#00ffff"
+        enemyColor = "#00ffff";
 }
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 function Corridor(textureLoader){
@@ -85,8 +90,8 @@ function Corridor(textureLoader){
 
 	return corridor;
 }
-
 module.exports = Corridor;
+    
 },{}],2:[function(require,module,exports){
 function Enemy(){
 	var enemyGeometry = new THREE.CylinderGeometry(.9, .9, 4, 12);
@@ -95,8 +100,8 @@ function Enemy(){
     enemy.rotateZ(Math.PI/2);
 	return enemy;
 }
-
 module.exports = Enemy;
+    
 },{}],3:[function(require,module,exports){
 function Floor(textureLoader, renderer) {
 
@@ -125,8 +130,8 @@ function Floor(textureLoader, renderer) {
 	// return floor;
 	return floor;
 }
-
 module.exports = Floor;
+    
 },{}],4:[function(require,module,exports){
 function Hand(camera){
 	/* HANDLE */
@@ -136,8 +141,8 @@ function Hand(camera){
 	hand.position.set(15, 6, camera.position.z / 2);
 	return hand;
 }
-
 module.exports = Hand;
+    
 },{}],5:[function(require,module,exports){
 function Lightsaber(){
 	/* LIGHTSABER MODEL */
@@ -152,8 +157,8 @@ function Lightsaber(){
 	lightsaber.add(glow);
 	return lightsaber;
 }
-
 module.exports = Lightsaber;
+    
 },{}],6:[function(require,module,exports){
 function Sky(textureLoader){
 	
@@ -165,10 +170,9 @@ function Sky(textureLoader){
 	skyDome.rotateY(-Math.PI/2);
 
 	return skyDome;
-
 }
-
 module.exports = Sky;
+    
 },{}],7:[function(require,module,exports){
 function Utils(){
 	this.raycaster = new THREE.Raycaster();
@@ -262,7 +266,6 @@ var u = new Utils();
 module.exports = u;
 },{}],8:[function(require,module,exports){
 
-
 var socket = io();
 
 var scene,
@@ -325,16 +328,26 @@ function init(){
 	orbitControls.noPan = true;
 	orbitControls.noZoom = true;
 	
-
 	if(isMobile){
 		controls = new DeviceOrientationController(camera, renderer.domElement);
 		controls.connect();
 	}
-
-	$('.landing').hide();
-	$('.confirm-button').hide();
+    //Hide the landing page, display timer and score
+	$('.landing').fadeOut(100);
+	$('.confirm-button').fadeOut(100);
     $("#score").fadeIn(500);
     $("#scoretitle").fadeIn(500);
+    $("#timer").fadeIn(500);
+    $("#timertitle").fadeIn(500);
+    //Count down every second for timer
+    setTimeout(function(){
+        setInterval(function(){
+            if (timer > 0){
+                timer--;
+                document.getElementById("timer").innerHTML = timer; 
+            }
+        },1000);
+    },5000);
 	container.appendChild(domElement);
 	domElement.addEventListener('click', fullscreen, false);
 	setupScene();
@@ -359,7 +372,6 @@ function setupScene(){
 	lightsaber = new Lightsaber();
 	hand.add(lightsaber);
 
-
 	Utils.collidableMeshList.push(lightsaber);
 
 	/* LIGHTING */
@@ -367,10 +379,11 @@ function setupScene(){
 	lightAngle.position.set(0,50,0);
 	scene.add(lightAngle);
 
-
 	// AXIS 
 	var axis = new THREE.AxisHelper(200);
     //scene.add(axis);
+    
+    scene.add(hand);
 
     requestAnimationFrame(animate);
 }
@@ -388,30 +401,29 @@ function setupGame() {
 		enemies.push(newEnemy);
 		Utils.collidableMeshList.push(newEnemy);
 		scene.add(newEnemy);
-	}, 900);
-
+	}, Math.floor((Math.random() * 200) + 900));
 }
 
 function fullscreen() {
-  if (container.requestFullscreen) {
-    container.requestFullscreen();
-  } else if (container.msRequestFullscreen) {
-    container.msRequestFullscreen();
-  } else if (container.mozRequestFullScreen) {
-    container.mozRequestFullScreen();
-  } else if (container.webkitRequestFullscreen) {
-    container.webkitRequestFullscreen();
-  }
+    if (container.requestFullscreen) {
+        container.requestFullscreen();
+    } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
+    } else if (container.mozRequestFullScreen) {
+        container.mozRequestFullScreen();
+    } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+    }
 }
 
 function setOrientationControls(e){
-  if(!e.alpha){
-    return;
-  }
-  controls = new THREE.DeviceOrientationControls(camera, true);
-  controls.connect();
-  controls.update();
-  window.removeEventListener('deviceorientation', setOrientationControls, true);
+    if(!e.alpha){
+        return;
+    }
+    controls = new THREE.DeviceOrientationControls(camera, true);
+    controls.connect();
+    controls.update();
+    window.removeEventListener('deviceorientation', setOrientationControls, true);
 }
 
 /* UTILS */
@@ -441,7 +453,6 @@ function setObjectQuat(object, data) {
 	/*	beta - Math.PI/2 because rotations on z-axis are made when device is in upright position 
 		-gamma because of the way the lightsaber is facing the camera
 	*/
-
 
 	euler.set(0, -gamma, beta - Math.PI/2);
 
@@ -485,8 +496,8 @@ function update(dt){
 // stores urls of all hit sounds
 var hitSounds = ["/sounds/hit1.wav", "/sounds/hit2.wav", "/sounds/hit3.wav", "/sounds/hit4.wav"];
 
-  // Check collision with lightsaber and enemy at every iteration
-  // ALSO updates "score" to document each time enemy is hit
+// Check collision with lightsaber and enemy at every iteration
+// ALSO updates "score" to document each time enemy is hit
 Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   	if(result){
   		socket.emit('sendhit');
@@ -494,7 +505,6 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   		score++;
   		document.getElementById("score").innerHTML = score;
         // play random hit sound when deflecting
-
         var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
         hitSound.play();
   	}
@@ -517,7 +527,6 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
 
 }
 
-
 $(document).ready(function(){
 	$('.confirm-button').click(function(){
 		init()
@@ -538,7 +547,6 @@ socket.on('setupcomplete', function(data){
 	$('#room-link').hide();
 	$('#qrcode').hide();
 	socket.emit('viewready');
-
 });
 
 socket.on('updateorientation', function(data){
