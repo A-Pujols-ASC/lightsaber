@@ -72,7 +72,5 @@ function changeAudio(){
 }
 
 socket.on('playsound', function(data){
-    var hitSound = new Audio("/sounds/hit1.wav")
-    hitSound.play();
 	// hitSounds[Math.floor(Math.random() * 3)].play();
 });

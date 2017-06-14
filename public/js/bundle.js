@@ -482,6 +482,9 @@ function update(dt){
   	setupGame();
   	started = true;
   }
+// stores urls of all hit sounds
+var hitSounds = ["/sounds/hit1.wav", "/sounds/hit2.wav", "/sounds/hit3.wav", "/sounds/hit4.wav"];
+
   // Check collision with lightsaber and enemy at every iteration
   // ALSO updates "score" to document each time enemy is hit
 Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
@@ -490,6 +493,10 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   		result.velocity = new THREE.Vector3(1, 0, 0);
   		score++;
   		document.getElementById("score").innerHTML = score;
+        // play random hit sound when deflecting
+
+        var hitSound = new Audio(hitSounds[0])
+        hitSound.play();
   	}
   });
 
