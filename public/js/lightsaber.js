@@ -59,8 +59,6 @@ volumeButton.addEventListener("click", function(){
 	changeAudio();
 });
 
-changeAudio();
-
 function changeAudio(){
     if(!muted){
         for(var i=0; i<hitFiles.length; i++){
