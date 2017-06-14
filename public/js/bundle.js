@@ -386,6 +386,10 @@ function setupScene(){
     scene.add(hand);
 
     requestAnimationFrame(animate);
+
+    // show intro message
+    playintroMessage();
+
 }
 
 function setupGame() {
@@ -508,8 +512,7 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
         var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
         hitSound.play();
 
-        $("#intromessage").fadeIn(500);
-        $("#outromessage").fadeIn(500);
+        $("#outroMessage").fadeIn(500);
   	}
   });
 
