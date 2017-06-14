@@ -79,6 +79,7 @@ function loadHitSounds(){
 loadHitSounds();
 
 socket.on('playsound', function(data){
-    hitSound.play();
+    var x = getElementById("hitSound");
+    x.play();
 	// hitSounds[Math.floor(Math.random() * 3)].play();
 });
