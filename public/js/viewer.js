@@ -1,181 +1,259 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- FIX BUTTON -->
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <script>
-        var roomId = "<%= room %>";
-    </script>
-    <script src="/libs/socket.io-1.3.7.js"></script>
-    <script src="/libs/three.min.js"></script>
-    <script src="/libs/DeviceOrientationController.js"></script>
-    <script src="/libs/OrbitControls.js"></script>
-    <script src="/libs/StereoEffect.js"></script>
-    <script src="/libs/jquery-2.1.4.min.js"></script>
-    <script src="/js/bundle.js"></script>
-    <script src="/js/mysql.js"></script>
-    <script>
-        var isMobile;
-        isMobile = false;
-        if (/Mobi/.test(navigator.userAgent)) {
-            isMobile = true;
-        }
-    </script>
-    <style>
-        body {
-            text-align: center;
-            margin: 0;
-            background-color: #000000;
-            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-            font-weight: 300;
-            color: white;
-        }
-        img.displayed {
-            display: block;
-            margin-right:auto;
-            margin-left:auto;
-        }
-        table,
-        th,
-        td {
-            border-collapse: collapse;
-            padding: 15px;
-        }
-        a {
-            color: white;
-        }
-        canvas {
-            bottom: 0;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-        }
-        .confirm-button {
-            width: 75%;
-            color: white;
-            border-radius: 10px;
-            background-color: #22c6ef;
-            display: none;
-            margin: 10px;
-            padding: 15px;
-            transition: background-color .5s;
-        }
-        .confirm-button span {
-            padding: 10px;
-            font-size: 18px;
-        }
-        .confirm-button:hover {
-            background-color: rgba(34, 198, 239, 0.68);
-            cursor: pointer;
-        }       
-        .lightsaber {
-            cursor: pointer;
-        }
-        .landing {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .align-item {
-            max-width: 80%;
-        }
-        .font{
-            font-family: Poppins;
-            font-size: 32px;
-        }
-        .saber{
-            opacity: 0.5;
-            transition: opacity .5s;
-        }
-        .saber:hover{
-            opacity: 1;
-        }
-        #qrcode{
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border-color: #22c6ef;
-            border-radius: 10px;
-            border-style: solid;
-        }
-        #room-url {
-        }
-        #room-url a {
-            text-decoration: none;
-        }
-        #score {
-            z-index: 1;
-            position: absolute;
-            right: 15%;
-            top: 10%;
-        }
-        #scoretitle {
-            z-index: 1;
-            position: absolute;
-            right: 15%;
-            top: 3%;
-        }
-        #intromessage{
-            z-index: 1;
-            position: absolute;
-            right: 15%;
-            top: 20%;
-        }
-        #outromessage{
-            z-index: 1;
-            position: absolute;
-            right: 15%;
-            top: 40%;
-        }
-        .statbar{
-            z-index: 1;
-            position: absolute;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="landing">
-        <div class="align-item">
-            <center>
-                <img class="displayed" src="/textures/allstarwars.png" width="250px" align="middle">
-                <p>First, select the lightsaber you would like to wield.</p>
-                <table style="width:50%">
-                    <tr>
-                        <td class="saber" id="blueSaber"><img onClick="changeBlue()" class="lightsaber displayed" src="/textures/bluesaber.png"></td>
-                        <td class="saber" id="greenSaber"><img onClick="changeGreen()" class="lightsaber displayed" src="/textures/greensaber.png"></td>
-                        <td class="saber" id="redSaber"><img onClick="changeRed()" class="lightsaber displayed" src="/textures/redsaber.png"></td>
-                    </tr>
-                </table>
-                <p>Next, enter the website or scan the QR code on a mobile device to begin.</p>
-                <img id="qrcode" src="">
-                <span style="color:#47dcff; font-size: 26px;" id="room-url"><div style="padding-bottom:25px;" id="room-link"><%= roomURL %></div></span>
-                <div class="confirm-button">
-                    <span><b>CONNECTED!</b></span>
-                    <span><br>Click here to begin.<br/></span>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="container">
-        <div style="z-index: 1">
-            <div class="font">
-                <h4 id="scoretitle" style="display:none;">Score</h4>
-                <p id="score" style="display:none;">0</p>
-                <p id="intromessage" style="display: none">INTRO</p>
-                <p id="outromessage" style="display: none">OUTRO</p>
-                <h4 class="statbar" id="timertitle" style="left: 15%; top: 3%;">Timer</h4>
-                <p class="statbar" id="timer" style="left: 15%; top: 10%;">0</p>
-                <h4 class="statbar" id="scoretitle" style="right: 15%; top: 3%;">Score</h4>
-                <p class="statbar" id="score" style="right: 15%; top: 10%;">0</p>
-            </div>
-        </div>
-    </div>
-    <script>
-        var qrimg = document.getElementById("room-link").innerHTML; document.getElementById("qrcode").src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data="+qrimg;
-    </script>
-</body>
+
+
+var socket = io();
+
+var scene,
+	width,
+	height,
+	camera,
+	renderer,
+	stereo,
+	clock,
+	textureLoader,
+	controls,
+	orbitControls,
+	container,
+	domElement,
+	hand,
+	enemy,
+	enemies,
+	lightsaber,
+	floor,
+	corridor,
+	soundDir,
+	started;
+
+
+var Sky = require('../../assets/Sky');
+var Floor = require('../../assets/Floor');
+var Corridor = require('../../assets/Corridor');
+var Hand = require('../../assets/Hand');
+var Lightsaber = require('../../assets/Lightsaber');
+var Enemy = require('../../assets/Enemy');
+var Utils = require('./utils');
+
+function init(){
+	started = false;
+	width = window.innerWidth;
+	height = window.innerHeight;
+	scene = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera(90, width / height, 0.001, 20000);
+	renderer = new THREE.WebGLRenderer();
+	stereo = new THREE.StereoEffect(renderer);
+	clock = new THREE.Clock();
+	textureLoader = new THREE.TextureLoader();
+	renderer.setSize( window.innerWidth, window.innerHeight);
+	camera.lookAt(0, 0, 0);
+	camera.position.set(0, 15, 0);
+
+	scene.add(camera);
+	
+	container = document.getElementById("container");
+	domElement = renderer.domElement;
+
+	orbitControls = new THREE.OrbitControls(camera, domElement);
+
+	orbitControls.target.set(
+		camera.position.x+0.15,
+		camera.position.y,
+		camera.position.z
+	);
+
+	orbitControls.noPan = true;
+	orbitControls.noZoom = true;
+	
+
+	if(isMobile){
+		controls = new DeviceOrientationController(camera, renderer.domElement);
+		controls.connect();
+	}
+
+	$('.landing').hide();
+	$('.confirm-button').hide();
+	container.appendChild(domElement);
+	domElement.addEventListener('click', fullscreen, false);
+	setupScene();
+}
+
+function setupScene(){
+
+	enemies = []; // Keep enemies in here so we can manipulate them in update()
+	
+	var sky = new Sky(textureLoader);
+	console.log(sky);
+	scene.add(sky);
+
+	floQWor = new Floor(textureLoader, renderer);
+	scene.add(floor);
+
+	corridor = new Corridor(textureLoader);
+	scene.add(corridor);
+
+	//Compound object from parent to child: Camera -> Hand -> Lightsaber -> Glow
+	hand = new Hand(camera);
+	lightsaber = new Lightsaber();
+	hand.add(lightsaber);
+
+
+	Utils.collidableMeshList.push(lightsaber);
+
+	/* LIGHTING */
+	lightAngle = new THREE.PointLight(0x999999, 1, 500);
+	lightAngle.position.set(0,50,0);
+	scene.add(lightAngle);
+
+
+	// AXIS 
+	var axis = new THREE.AxisHelper(200);
+    //scene.add(axis);
+
+    requestAnimationFrame(animate);
+}
+
+function setupGame() {
+	scene.add(hand);
+	enemy = new Enemy();
+	window.addEventListener('deviceorientation', setOrientationControls, true);
+	// Every 1.5 seconds, spawn a new enemy  at random position and set its velocity to -1, to come at the player
+	window.setInterval(function(){
+		var newEnemy = enemy.clone();
+		newEnemy.position.set(200, Utils.getRandomInRange(5, 20), Utils.getRandomInRange(-10, 10));
+		newEnemy.name = "enemy";
+		newEnemy.velocity = new THREE.Vector3(-1, 0, 0);
+		enemies.push(newEnemy);
+		Utils.collidableMeshList.push(newEnemy);
+		scene.add(newEnemy);
+	}, 1500);
+
+}
+
+function fullscreen() {
+  if (container.requestFullscreen) {
+    container.requestFullscreen();
+  } else if (container.msRequestFullscreen) {
+    container.msRequestFullscreen();
+  } else if (container.mozRequestFullScreen) {
+    container.mozRequestFullScreen();
+  } else if (container.webkitRequestFullscreen) {
+    container.webkitRequestFullscreen();
+  }
+}
+
+function setOrientationControls(e){
+  if(!e.alpha){
+    return;
+  }
+  controls = new THREE.DeviceOrientationControls(camera, true);
+  controls.connect();
+  controls.update();
+  window.removeEventListener('deviceorientation', setOrientationControls, true);
+}
+
+/* UTILS */
+function setObjectQuat(object, data) {
+	
+	/* Degrees to radians */
+	var gammaRotation = data.g ? data.g * (Math.PI / 180): 0;
+	var betaRotation = data.b ? data.b * (Math.PI / 180) : 0;
+	var alphaRotation = data.a ? data.a * (Math.PI / 180): 0;
+	var alpha, beta, gamma, betaMax, betaMin;
+	var euler = new THREE.Euler();
+	
+	beta = betaRotation;
+	gamma = gammaRotation;
+	alpha = alphaRotation;
+
+
+	euler.set(0, -gamma, beta - Math.PI/2);
+
+	/* Using quaternions to combat gimbal lock */ 
+	object.quaternion.setFromEuler(euler);
+}
+
+/* RENDER */
+
+function resize() {
+  var newWidth = window.innerWidth;
+  var newHeight = window.innerHeight;
+  camera.aspect = newWidth / newHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(newWidth, newHeight);
+  stereo.setSize(newWidth, newHeight);
+}
+
+function animate(){
+	var elapsedSeconds = clock.getElapsedTime();
+	requestAnimationFrame(animate);
+	update(clock.getDelta());
+	if(isMobile){
+		stereo.render(scene, camera);
+	}else{
+		renderer.render(scene, camera);
+	}
+}
+
+function update(dt){
+  resize();
+  camera.updateProjectionMatrix();  
+  orbitControls.update(dt);
+
+  var cameraDir = Utils.cameraLookDir(camera);
+
+  if(Math.abs(1 - cameraDir.x) < 0.01 && !started) {
+  	setupGame();
+  	started = true;
+  }
+  // Check collision with lightsaber and enemy at every iteration
+  Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
+  	if(result){
+  		socket.emit('sendhit');
+  		result.velocity = new THREE.Vector3(1, 0, 0);
+  	}
+  });
+
+  // Apply velocity vector to enemy, check if they are out of bounds to remove them
+  for(var i=0; i<enemies.length; i++){
+  	var e = enemies[i];
+  	e.position.add(e.velocity);
+  	if(e.position.x < -10 || e.position.x > 200){
+  		scene.remove(e);
+  		enemies.splice(i, 1);
+  	}
+
+  }
+
+  if(isMobile) {
+  	controls.update();
+  }
+
+}
+
+$(document).ready(function(){
+	$('.confirm-button').click(function(){
+		init();
+		animate();
+	});
+});
+
+/* SOCKET.IO */
+
+socket.emit('viewerjoin', {room: roomId});
+
+socket.on('beginsetup', function(data){
+	// change display
+});
+
+socket.on('setupcomplete', function(data){
+	$('.confirm-button').show();
+	socket.emit('viewready');
+
+});
+
+socket.on('updateorientation', function(data){
+	if(hand){
+		setObjectQuat(hand, data);
+	}
+});
+
+socket.on('updatemotion', function(data){
+});
