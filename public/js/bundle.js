@@ -537,11 +537,6 @@ socket.on('updateorientation', function(data){
 	}
 });
 
-socket.on('playsound', function(data){
-    hitSounds[Math.floor(Math.random() * 3)].play();
-    console.log('Sent from Lightsaber')
-});
-
 socket.on('updatemotion', function(data){
 });
 },{"../../assets/Corridor":1,"../../assets/Enemy":2,"../../assets/Floor":3,"../../assets/Hand":4,"../../assets/Lightsaber":5,"../../assets/Sky":6,"./utils":7}]},{},[8]);
