@@ -80,7 +80,7 @@ loadHitSounds();
 
 socket.on('playsound', function(data){
     var x = document.getElementById("hitSound");
-    x.load()''
+    x.load();
     x.play();
 	// hitSounds[Math.floor(Math.random() * 3)].play();
 });
