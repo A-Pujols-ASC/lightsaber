@@ -495,10 +495,8 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   		document.getElementById("score").innerHTML = score;
         // play random hit sound when deflecting
 
-        var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)])
+        var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
         hitSound.play();
-
-        document.getElementById("score").style.display = "none";
   	}
   });
 
