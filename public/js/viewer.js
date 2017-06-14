@@ -252,6 +252,7 @@ socket.on('setupcomplete', function(data){
 socket.on('updateorientation', function(data){
 	if(hand){
 		setObjectQuat(hand, data);
+        console.log('Sent from Viewer')
 	}
 });
 
