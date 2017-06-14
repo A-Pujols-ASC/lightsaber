@@ -486,7 +486,6 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   		result.velocity = new THREE.Vector3(1, 0, 0);
   		score++;
   		document.getElementById("score").innerHTML = score;
-        console.log('Sent from Bundle')
   	}
   });
 

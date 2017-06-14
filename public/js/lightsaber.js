@@ -49,7 +49,7 @@ var muted = false,
 	audio = new Audio();
 	soundDir  = "/sounds/",
 	hitFiles = ["hit1.wav", "hit2.wav", "hit3.wav", "hit4.wav"],
-	hitSounds = [];
+	hitSounds = ["/sounds/hit1.wav", "/sounds/hit2.wav", "/sounds/hit3.wav", "/sounds/hit4.wav"];
 
 // volumeButton.addEventListener("click", function(){
 // 	if(muted){
@@ -71,7 +71,14 @@ function changeAudio(){
     }
 }
 
+function loadHitSounds(){
+    var hitSound = new Audio("/sounds/hit1.wav")
+    hitSound.id = "hitSound";
+}
+
+loadHitSounds();
+
 socket.on('playsound', function(data){
+    hitSound.play();
 	// hitSounds[Math.floor(Math.random() * 3)].play();
-    console.log('Sent from Lightsaber')
 });
