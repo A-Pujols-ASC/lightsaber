@@ -71,17 +71,8 @@ function changeAudio(){
     }
 }
 
-function loadHitSounds(){
-    var hitSound = new Audio("/sounds/hit1.wav")
-    hitSound.load();
-    hitSound.id = "hitSound";
-    console.log('From Hitsounds')
-}
-
-loadHitSounds();
-
 socket.on('playsound', function(data){
-    var x = document.getElementById("hitSound");
-    x.play();
+    var hitSound = new Audio("/sounds/hit1.wav")
+    hitSound.play();
 	// hitSounds[Math.floor(Math.random() * 3)].play();
 });
