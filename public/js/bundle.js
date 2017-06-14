@@ -497,6 +497,8 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
 
         var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)])
         hitSound.play();
+
+        document.getElementById("score").style.display = "none";
   	}
   });
 
