@@ -350,7 +350,8 @@ function init(){
                     $("#timertitle").fadeIn(500);
                     $("#introMessage").fadeOut(500);
                 } else if(timer == 0){
-                    $("#outroMessage").fadeIn(500);
+                    // play outro message
+                    playoutroMessage();
                 }
             }
         },1000);
@@ -402,6 +403,11 @@ function setupScene(){
 // Intro message function
 function playintroMessage() {
     $("#introMessage").fadeIn(500);
+}
+
+// Outro message function
+function playoutroMessage(){
+    $("#outroMessage").fadeIn(500);
 }
 
 function setupGame() {
