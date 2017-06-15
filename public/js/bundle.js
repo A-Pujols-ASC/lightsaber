@@ -349,6 +349,8 @@ function init(){
                     $("#timer").fadeIn(500);
                     $("#timertitle").fadeIn(500);
                     $("#introMessage").fadeOut(500);
+                } else if(timer == 0){
+                    $("#outroMessage").fadeIn(500);
                 }
             }
         },1000);
@@ -521,8 +523,6 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
         // play random hit sound when deflecting
         var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
         hitSound.play();
-
-        $("#outroMessage").fadeIn(500);
   	}
   });
 
