@@ -348,7 +348,7 @@ function init(){
                 if (timer == 60){
                     $("#timer").fadeIn(500);
                     $("#timertitle").fadeIn(500);
-                    $("#intromessage").fadeOut(500);
+                    $("#introMessage").fadeOut(500);
                 }
             }
         },1000);
@@ -399,7 +399,7 @@ function setupScene(){
 
 // Intro message function
 function playintroMessage() {
-    $("#intromessage").fadeIn(500);
+    $("#introMessage").fadeIn(500);
 }
 
 function setupGame() {
