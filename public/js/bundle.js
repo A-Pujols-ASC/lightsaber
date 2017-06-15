@@ -350,7 +350,7 @@ function init(){
                     $("#timertitle").fadeIn(500);
                     $("#introMessage").fadeOut(500);
                 } else if(timer == 0){
-                    // play outro message
+                    // play outro message at end of timer
                     playoutroMessage();
                 }
             }
