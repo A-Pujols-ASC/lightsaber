@@ -571,9 +571,9 @@ socket.on('setupcomplete', function(data){
 	socket.emit('viewready');
 });
 
-socket.on('beginGame'), function(data){
-    console.log("Game has Begun");
-}
+// socket.on('beginGame'), function(data){
+//     console.log("Game has Begun");
+// }
 socket.on('updateorientation', function(data){
 	if(hand){
 		setObjectQuat(hand, data);
