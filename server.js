@@ -80,7 +80,7 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('beginGame'), function(data){
-		print('begun');
+		socket.broadcast.to(socket.room).emit('beginGame');
 	}
 
 	socket.on('sendorientation', function(data){
