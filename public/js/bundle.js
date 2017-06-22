@@ -1,9 +1,5 @@
 //Makes score an integer
 var score = 0;
-//Modifies color of the lightsaber based on option clicked (default is blue)
-//also highlights the option selected, and dehighlights the rest
-lightsaberColor = "#00ffff";
-enemyColor = "#ff3346";
 var timer = 65;
 //Modifies color of the lightsaber based on option clicked (default is blue)
 //also highlights the option selected, and dehighlights the rest
