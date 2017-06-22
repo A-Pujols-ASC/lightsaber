@@ -72,6 +72,24 @@
         .saber:hover{
             opacity: 1;
         }
+        .confirm-button {
+            width: 75%;
+            color: white;
+            border-radius: 10px;
+            background-color: #22c6ef;
+            display: none;
+            margin: 10px;
+            padding: 15px;
+            transition: background-color .5s;
+        }
+        .confirm-button span {
+            padding: 10px;
+            font-size: 18px;
+        }
+        .confirm-button:hover {
+            background-color: rgba(34, 198, 239, 0.68);
+            cursor: pointer;
+        }  
 	</style>
 	</head>
 	<body>
@@ -87,6 +105,10 @@
                             <td class="saber" id="redSaber"><img onClick="changeRed()" class="lightsaber displayed" src="/textures/redsaber.png"></td>
                         </tr>
                     </table>
+                <div class="confirm-button">
+                    <span><b>CONNECTED!</b></span>
+                    <span><br>Click here to begin.<br/></span>
+                </div>
                 </center>
             </div>
         </div>
