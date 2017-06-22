@@ -39,6 +39,7 @@ socket.on('viewready', function(data){
 			}
 		});
 	}
+    socket.emit('startedGame');
 });
 
 
@@ -74,6 +75,3 @@ function changeAudio(){
 socket.on('playsound', function(data){
 	// hitSounds[Math.floor(Math.random() * 3)].play();
 });
-socket.on('beginGame', function(data){
-    console.log("Game Begun")
-}

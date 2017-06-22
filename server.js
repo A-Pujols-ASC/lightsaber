@@ -79,7 +79,7 @@ io.on('connection', function (socket) {
 		console.log("View ready: "+socket.room);
 	});
 
-	socket.on('beginGame'), function(data){
+	socket.on('startedGame'), function(data){
 		socket.broadcast.to(socket.room).emit('beginGame');
 	}
 
