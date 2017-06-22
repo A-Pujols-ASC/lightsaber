@@ -551,8 +551,9 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
 
 $(document).ready(function(){
 	$('.confirm-button').click(function(){
-		init()
+		init();
 		animate();
+        socket.emit('beginGame');
 	});
 });
 

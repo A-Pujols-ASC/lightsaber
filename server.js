@@ -79,6 +79,10 @@ io.on('connection', function (socket) {
 		console.log("View ready: "+socket.room);
 	});
 
+	socket.on('beginGame'), function(data){
+		print('begun');
+	}
+
 	socket.on('sendorientation', function(data){
 		socket.broadcast.to(socket.room).emit('updateorientation',data);
 	});
