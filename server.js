@@ -81,7 +81,7 @@ io.on('connection', function (socket) {
 
 	socket.on('startedGame'), function(data){
 		socket.broadcast.to(socket.room).emit('beginGame');
-	}
+	};
 
 	socket.on('sendorientation', function(data){
 		socket.broadcast.to(socket.room).emit('updateorientation',data);

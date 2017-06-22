@@ -572,7 +572,7 @@ socket.on('setupcomplete', function(data){
 });
 
 socket.on('beginGame'), function(data){
-    console.log("Game has Begun")
+    console.log("Game has Begun");
 }
 socket.on('updateorientation', function(data){
 	if(hand){
