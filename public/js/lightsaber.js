@@ -39,7 +39,7 @@ socket.on('viewready', function(data){
 			}
 		});
 	}
-    // socket.emit('startedGame');
+    socket.emit('startedGame');
 });
 
 
