@@ -72,6 +72,12 @@ function changeAudio(){
     }
 }
 
+// starts game and displays lightsaber on controller
+
+function startgame(){
+    
+}
+
 socket.on('playsound', function(data){
 	// hitSounds[Math.floor(Math.random() * 3)].play();
 });
