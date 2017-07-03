@@ -39,7 +39,6 @@ socket.on('viewready', function(data){
 			}
 		});
 	}
-    socket.emit('startedGame');
 });
 
 
@@ -75,7 +74,7 @@ function changeAudio(){
 // starts game and displays lightsaber on controller
 
 function startgame(){
-    
+    socket.emit('startedGame');
 }
 
 socket.on('playsound', function(data){
