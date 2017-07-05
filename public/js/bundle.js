@@ -567,8 +567,12 @@ socket.on('setupcomplete', function(data){
 	socket.emit('viewready');
 });
 
+// initiates game
+
 socket.on('beginGame', function(data){
     console.log("Game has Begun");
+    init();
+    animate();
 });
 
 socket.on('updateorientation', function(data){
