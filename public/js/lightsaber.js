@@ -75,11 +75,11 @@ function changeAudio(){
 function startgame(){
     socket.emit('startedGame');
     // displays main lightsaber on controller
-    $('#center').fadein(500);
+    $('#center').fadeIn(500);
 
     // hides smaller lightsabers and button
-    $('.saber').fadeout(100);
-    $('.confirm-button').fadeout(100);
+    $('.saber').fadeOut(100);
+    $('.confirm-button').fadeOut(100);
     $('.landing').fadeOut(100);
 
 }
