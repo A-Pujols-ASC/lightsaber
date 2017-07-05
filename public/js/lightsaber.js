@@ -71,6 +71,10 @@ function changeAudio(){
     }
 }
 
+function changeColor(){
+
+}  
+
 // starts game 
 function startgame(){
     socket.emit('startedGame');
