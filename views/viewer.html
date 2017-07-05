@@ -154,29 +154,6 @@
     <div class="landing">
         <div class="align-item">
             <center>
-                <img src="/textures/allstarwars.png" width="240" align="middle">
-                <p>First, select the lightsaber you would like to wield.</p>
-
-                <table style="width:50%">
-                    <tr>
-                        <td id="blueSaber"><img onClick="changeBlue()" class="lightsaber" src="/textures/bluesaber.png"></td>
-                        <td id="greenSaber"><img onClick="changeGreen()" class="lightsaber" src="/textures/greensaber.png"></td>
-                        <td id="redSaber"><img onClick="changeRed()" class="lightsaber" src="/textures/redsaber.png"></td>
-                    </tr>
-                </table>
-                <style>
-                    .lightsaber {
-                        cursor: pointer;
-                    }
-                </style>
-                <p>Next, enter the website or scan the QR code on a mobile device to begin.</p>
-            </center>
-            <br>
-            <center>
-                <span style="color:#47dcff" id="room-url"><%= roomURL %></span>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+%= roomURL %>
-            </center>
-            <center>
                 <img class="displayed" src="/textures/allstarwars.png" width="250px" align="middle">
                 <p>First, select the lightsaber you would like to wield.</p>
                 <table style="width:50%">
@@ -198,25 +175,6 @@
     </div>
     <div id="container">
         <!--Displaying/Updating Score or Timer above Canvas-->
-        <div style="z-index: 1">
-            <div class="font">
-                <h4 id="timertitle">Timer</h4>
-                <p id="timer">0</p>
-                <h4 id="scoretitle">Score</h4>
-                <p id="score">0</p>
-            </div>
-            <!--Used to increment value of id="score"-->
-            <script>
-                var timer = setInterval(function(){increment()},1000);
-                function increment(){
-                    timer++;
-                    document.getElementById("timer").innerHTML = timer; 
-                }
-            </script>
-        </div>
-    </div>
-</body>
-</html>
         <div style="z-index: 1">
             <div class="font">
                 <h4 class="statbar" id="timertitle" style="left: 15%; top: 3%;">Timer</h4>

@@ -1,5 +1,8 @@
 var socket = io();
 
+// stores default lightsaber color variable
+var lightsaberColor = "#00ffff";
+
 var alpha, beta, gamma;
 alpha = document.getElementById("alpha");
 beta = document.getElementById("beta");
@@ -71,8 +74,8 @@ function changeAudio(){
     }
 }
 
-function changeColor(){
-
+function changeColor(color){
+    if color 
 }  
 
 // starts game 
