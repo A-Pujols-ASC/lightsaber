@@ -1,7 +1,7 @@
 var socket = io();
 
 // stores default lightsaber color variable
-var lightsaberColor = "#00ffff";
+var lightsaberColor = {color: "#00ffff"}
 
 var alpha, beta, gamma;
 alpha = document.getElementById("alpha");
@@ -74,13 +74,13 @@ function changeAudio(){
     }
 }
 
-function changeColor(color){
-    if color 
-}  
+function changeColor(sabercolor){
+    lightsaberColor = {color: sabercolor}
+}
 
 // starts game 
 function startgame(){
-    socket.emit('startedGame');
+    socket.emit('startedGame', lightsaberColor);
     // displays main lightsaber on controller
     $('#center').fadeIn(500);
 

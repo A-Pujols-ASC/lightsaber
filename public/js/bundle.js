@@ -5,6 +5,17 @@ var timer = 65;
 //also highlights the option selected, and dehighlights the rest
 var lightsaberColor = "#00ffff";
 var enemyColor = "#ff3346";
+function changeColor(color){
+    if (color == 'blue'){
+        lightsaberColor = "#00ffff";
+        enemyColor = "#ff3346";
+    }else if (color == 'green'){
+        lightsaberColor = "#05B805";
+        enemyColor = "#ff3346";
+    }else if (color == 'red'){
+        lightsaberColor = "#ff0000";
+        enemyColor = "#00ffff";
+}
 function changeBlue(){
 		document.getElementById("blueSaber").style["opacity"] = "1";
 		document.getElementById("redSaber").style["opacity"] = "0.5";
@@ -571,6 +582,8 @@ socket.on('setupcomplete', function(data){
 
 socket.on('beginGame', function(data){
     console.log("Game has Begun");
+    // changes lightsaberColor to selected
+    changeColor(data.color);
     init();
     animate();
 });
