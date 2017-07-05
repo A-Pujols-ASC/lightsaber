@@ -11,7 +11,7 @@ app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
 var rooms = [];
-var bitly = new Bitly('e7d67277347e7c7b79b591cafa422a22e9a380');
+var bitly = new Bitly('e7d67277347e7c7b79b591cafa422a22e9a380fb');
 
 app.get('/', function (req, res) {
 	var room = shortid.generate();
