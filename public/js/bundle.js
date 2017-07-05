@@ -15,6 +15,7 @@ function changeColor(color){
     }else if (color == 'red'){
         lightsaberColor = "#ff0000";
         enemyColor = "#00ffff";
+    }
 }
 function changeBlue(){
 		document.getElementById("blueSaber").style["opacity"] = "1";
