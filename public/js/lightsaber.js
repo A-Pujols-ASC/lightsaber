@@ -71,10 +71,17 @@ function changeAudio(){
     }
 }
 
-// starts game and displays lightsaber on controller
-
+// starts game 
 function startgame(){
     socket.emit('startedGame');
+    // displays main lightsaber on controller
+    $('#center').fadein(500);
+
+    // hides smaller lightsabers and button
+    $('.saber').fadeout(100);
+    $('.confirm-button').fadeout(100);
+    $('.landing').fadeOut(100);
+
 }
 
 socket.on('playsound', function(data){
