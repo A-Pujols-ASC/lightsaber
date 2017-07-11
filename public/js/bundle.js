@@ -182,6 +182,17 @@ function Sky(textureLoader){
 module.exports = Sky;
     
 },{}],7:[function(require,module,exports){
+function Enemy_1(){
+    /* ENEMY_1 MODEL */
+    var enemy_1Geometry = new THREE.CylinderGeometry(.7, .7, 6, 7);
+    var enemy_1Material = new THREE.MeshBasicMaterial({color: "#ffff00"});
+    enemy_1 = new THREE.Mesh(enemy_1Geometry, enemy_1Material);
+    hand.position.set(15, 30, 0);
+    return enemy_1;
+}
+module.exports = Enemy_1;
+
+},{}],8:[function(require,module,exports){
 function Utils(){
 	this.raycaster = new THREE.Raycaster();
 	this.collidableMeshList = []; // All meshes raycaster cares about
@@ -272,7 +283,7 @@ Utils.prototype.debugAxes = function(axisLength, scene){
 var u = new Utils();
 
 module.exports = u;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 
 var socket = io();
 
@@ -295,7 +306,8 @@ var scene,
 	floor,
 	corridor,
 	soundDir,
-	started;
+	started,
+    enemy_1;
 
 
 var Sky = require('../../assets/Sky');
@@ -304,8 +316,8 @@ var Corridor = require('../../assets/Corridor');
 var Hand = require('../../assets/Hand');
 var Lightsaber = require('../../assets/Lightsaber');
 var Laser = require('../../assets/Laser');
-var Utils = require('./utils');
 var Enemy_1 = require('../../assets/Enemy_1');
+var Utils = require('./utils');
 
 function init(){
 	started = false;
@@ -384,7 +396,7 @@ function setupScene(){
 	corridor = new Corridor(textureLoader);
 	scene.add(corridor);
 
-	//Compound object from parent to child: Camera -> Hand -> Lightsaber -> Glow
+	// Compound object from parent to child: Camera -> Hand -> Lightsaber -> Glow
 	hand = new Hand(camera);
 	lightsaber = new Lightsaber();
 	hand.add(lightsaber);
@@ -398,9 +410,12 @@ function setupScene(){
 
 	// AXIS 
 	var axis = new THREE.AxisHelper(200);
-    //scene.add(axis);
+    // scene.add(axis);
     
     scene.add(hand);
+
+    enemy_1 = new Enemy_1();
+    scene.add(enemy_1);
 
     requestAnimationFrame(animate);
 
@@ -598,4 +613,4 @@ socket.on('updateorientation', function(data){
 
 socket.on('updatemotion', function(data){
 });
-},{"../../assets/Corridor":1,"../../assets/Laser":2,"../../assets/Floor":3,"../../assets/Hand":4,"../../assets/Lightsaber":5,"../../assets/Sky":6,"./utils":7}]},{},[8]);
+},{"../../assets/Corridor":1,"../../assets/Laser":2,"../../assets/Floor":3,"../../assets/Hand":4,"../../assets/Lightsaber":5,"../../assets/Sky":6,"../../assets/Enemy_1":7,"./utils":8}]},{},[9]);
