@@ -305,6 +305,7 @@ var Hand = require('../../assets/Hand');
 var Lightsaber = require('../../assets/Lightsaber');
 var Laser = require('../../assets/Laser');
 var Utils = require('./utils');
+var Enemy_1 = require('../../assets/Enemy_1');
 
 function init(){
 	started = false;
