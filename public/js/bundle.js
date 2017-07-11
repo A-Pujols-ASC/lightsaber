@@ -302,7 +302,7 @@ var Sky = require('../../assets/Sky');
 var Floor = require('../../assets/Floor');
 var Corridor = require('../../assets/Corridor');
 var Hand = require('../../assets/Hand');
-// var Lightsaber = require('../../assets/Lightsaber');
+var Lightsaber = require('../../assets/Lightsaber');
 var Laser = require('../../assets/Laser');
 var Utils = require('./utils');
 
