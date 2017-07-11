@@ -15,8 +15,8 @@ var scene,
 	container,
 	domElement,
 	hand,
-	enemy,
-	enemies,
+	laser,
+	lasers,
 	lightsaber,
 	floor,
 	corridor,
@@ -29,7 +29,7 @@ var Floor = require('../../assets/Floor');
 var Corridor = require('../../assets/Corridor');
 var Hand = require('../../assets/Hand');
 var Lightsaber = require('../../assets/Lightsaber');
-var Enemy = require('../../assets/Enemy');
+var Laser = require('../../assets/Laser');
 var Utils = require('./utils');
 
 function init(){
@@ -77,7 +77,7 @@ function init(){
 
 function setupScene(){
 
-	enemies = []; // Keep enemies in here so we can manipulate them in update()
+	lasers = []; // Keep lasers in here so we can manipulate them in update()
 	
 	var sky = new Sky(textureLoader);
 	console.log(sky);
@@ -112,17 +112,17 @@ function setupScene(){
 
 function setupGame() {
 	scene.add(hand);
-	enemy = new Enemy();
+	laser = new Laser();
 	window.addEventListener('deviceorientation', setOrientationControls, true);
-	// Every 1.5 seconds, spawn a new enemy  at random position and set its velocity to -1, to come at the player
+	// Every 1.5 seconds, spawn a new laser at random position and set its velocity to -1, to come at the player
 	window.setInterval(function(){
-		var newEnemy = enemy.clone();
-		newEnemy.position.set(200, Utils.getRandomInRange(5, 20), Utils.getRandomInRange(-10, 10));
-		newEnemy.name = "enemy";
-		newEnemy.velocity = new THREE.Vector3(-1, 0, 0);
-		enemies.push(newEnemy);
-		Utils.collidableMeshList.push(newEnemy);
-		scene.add(newEnemy);
+		var newLaser = laser.clone();
+		newLaser.position.set(200, Utils.getRandomInRange(5, 20), Utils.getRandomInRange(-10, 10));
+		newLaser.name = "laser";
+		newLaser.velocity = new THREE.Vector3(-1, 0, 0);
+		lasers.push(newLaser);
+		Utils.collidableMeshList.push(newLaser);
+		scene.add(newLaser);
 	}, 1500);
 
 }
@@ -203,21 +203,21 @@ function update(dt){
   	setupGame();
   	started = true;
   }
-  // Check collision with lightsaber and enemy at every iteration
-  Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
+  // Check collision with lightsaber and laser at every iteration
+  Utils.checkCollision(lightsaber.children[0], "laser", true, function(result){
   	if(result){
   		socket.emit('sendhit');
   		result.velocity = new THREE.Vector3(1, 0, 0);
   	}
   });
 
-  // Apply velocity vector to enemy, check if they are out of bounds to remove them
-  for(var i=0; i<enemies.length; i++){
-  	var e = enemies[i];
+  // Apply velocity vector to laser, check if they are out of bounds to remove them
+  for(var i=0; i<lasers.length; i++){
+  	var e = lasers[i];
   	e.position.add(e.velocity);
   	if(e.position.x < -10 || e.position.x > 200){
   		scene.remove(e);
-  		enemies.splice(i, 1);
+  		lasers.splice(i, 1);
   	}
 
   }

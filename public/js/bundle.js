@@ -4,17 +4,17 @@ var timer = 65;
 // Modifies color of the lightsaber based on option clicked (default is blue)
 // also highlights the option selected, and dehighlights the rest
 var lightsaberColor = "#00ffff";
-var enemyColor = "#ff3346";
+var laserColor = "#ff3346";
 function changeColor(color){
     if (color == 'blue'){
         lightsaberColor = "#00ffff";
-        enemyColor = "#ff3346";
+        laserColor = "#ff3346";
     }else if (color == 'green'){
         lightsaberColor = "#05B805";
-        enemyColor = "#ff3346";
+        laserColor = "#ff3346";
     }else if (color == 'red'){
         lightsaberColor = "#ff0000";
-        enemyColor = "#00ffff";
+        laserColor = "#00ffff";
     }
 }
 function changeBlue(){
@@ -22,21 +22,21 @@ function changeBlue(){
 		document.getElementById("redSaber").style["opacity"] = "0.5";
 		document.getElementById("greenSaber").style["opacity"] = "0.5";
         lightsaberColor = "#00ffff";
-        enemyColor = "#ff3346";
+        laserColor = "#ff3346";
 }
 function changeGreen(){
 		document.getElementById("greenSaber").style["opacity"] = "1";
 		document.getElementById("blueSaber").style["opacity"] = "0.5";
 		document.getElementById("redSaber").style["opacity"] = "0.5";
 		lightsaberColor = "#05B805";
-        enemyColor = "#ff3346";
+        laserColor = "#ff3346";
 } 
 function changeRed(){
 		document.getElementById("redSaber").style["opacity"] = "1";
 		document.getElementById("blueSaber").style["opacity"] = "0.5";
 		document.getElementById("greenSaber").style["opacity"] = "0.5";
 		lightsaberColor = "#ff0000";
-        enemyColor = "#00ffff";
+        laserColor = "#00ffff";
 }
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 function Corridor(textureLoader){
@@ -101,14 +101,14 @@ function Corridor(textureLoader){
 module.exports = Corridor;
     
 },{}],2:[function(require,module,exports){
-function Enemy(){
-	var enemyGeometry = new THREE.CylinderGeometry(.9, .9, 4, 12);
-	var enemyMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.75, color: enemyColor});
-	var enemy = new THREE.Mesh(enemyGeometry, enemyMaterial);
-    enemy.rotateZ(Math.PI/2);
-	return enemy;
+function Laser(){
+	var laserGeometry = new THREE.CylinderGeometry(.9, .9, 4, 12);
+	var laserMaterial = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.75, color: laserColor});
+	var laser = new THREE.Mesh(laserGeometry, laserMaterial);
+    laser.rotateZ(Math.PI/2);
+	return laser;
 }
-module.exports = Enemy;
+module.exports = Laser;
     
 },{}],3:[function(require,module,exports){
 function Floor(textureLoader, renderer) {
@@ -289,8 +289,8 @@ var scene,
 	container,
 	domElement,
 	hand,
-	enemy,
-	enemies,
+	laser,
+	lasers,
 	lightsaber,
 	floor,
 	corridor,
@@ -303,7 +303,7 @@ var Floor = require('../../assets/Floor');
 var Corridor = require('../../assets/Corridor');
 var Hand = require('../../assets/Hand');
 var Lightsaber = require('../../assets/Lightsaber');
-var Enemy = require('../../assets/Enemy');
+var Laser = require('../../assets/Laser');
 var Utils = require('./utils');
 
 function init(){
@@ -371,7 +371,7 @@ function init(){
 
 function setupScene(){
 
-	enemies = []; // Keep enemies in here so we can manipulate them in update()
+	lasers = []; // Keep lasers in here so we can manipulate them in update()
 	
 	var sky = new Sky(textureLoader);
 	console.log(sky);
@@ -420,17 +420,17 @@ function playoutroMessage(){
 
 function setupGame() {
 	scene.add(hand);
-	enemy = new Enemy();
+	laser = new Laser();
 	window.addEventListener('deviceorientation', setOrientationControls, true);
-	// Every 1.5 seconds, spawn a new enemy  at random position and set its velocity to -1, to come at the player
+	// Every 1.5 seconds, spawn a new laser  at random position and set its velocity to -1, to come at the player
 	window.setInterval(function(){
-		var newEnemy = enemy.clone();
-		newEnemy.position.set(200, Utils.getRandomInRange(5, 25), Utils.getRandomInRange(-10, 10));
-		newEnemy.name = "enemy";
-		newEnemy.velocity = new THREE.Vector3(-1.2, 0, 0);
-		enemies.push(newEnemy);
-		Utils.collidableMeshList.push(newEnemy);
-		scene.add(newEnemy);
+		var newLaser = laser.clone();
+		newLaser.position.set(200, Utils.getRandomInRange(5, 25), Utils.getRandomInRange(-10, 10));
+		newLaser.name = "laser";
+		newLaser.velocity = new THREE.Vector3(-1.2, 0, 0);
+		lasers.push(newLaser);
+		Utils.collidableMeshList.push(newLaser);
+		scene.add(newLaser);
 	}, Math.floor((Math.random() * 200) + 900));
 }
 
@@ -526,9 +526,9 @@ function update(dt){
 // stores urls of all hit sounds
 var hitSounds = ["/sounds/hit1.wav", "/sounds/hit2.wav", "/sounds/hit3.wav", "/sounds/hit4.wav"];
 
-// Check collision with lightsaber and enemy at every iteration
-// ALSO updates "score" to document each time enemy is hit
-Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
+// Check collision with lightsaber and laser at every iteration
+// ALSO updates "score" to document each time laser is hit
+Utils.checkCollision(lightsaber.children[0], "laser", true, function(result){
   	if(result){
   		socket.emit('sendhit');
   		result.velocity = new THREE.Vector3(1, 0, 0);
@@ -540,13 +540,13 @@ Utils.checkCollision(lightsaber.children[0], "enemy", true, function(result){
   	}
   });
 
-  // Apply velocity vector to enemy, check if they are out of bounds to remove them
-  for(var i=0; i<enemies.length; i++){
-  	var e = enemies[i];
+  // Apply velocity vector to laser, check if they are out of bounds to remove them
+  for(var i=0; i<lasers.length; i++){
+  	var e = lasers[i];
   	e.position.add(e.velocity);
   	if(e.position.x < -10 || e.position.x > 200){
   		scene.remove(e);
-  		enemies.splice(i, 1);
+  		lasers.splice(i, 1);
   	}
 
   }
@@ -597,4 +597,4 @@ socket.on('updateorientation', function(data){
 
 socket.on('updatemotion', function(data){
 });
-},{"../../assets/Corridor":1,"../../assets/Enemy":2,"../../assets/Floor":3,"../../assets/Hand":4,"../../assets/Lightsaber":5,"../../assets/Sky":6,"./utils":7}]},{},[8]);
+},{"../../assets/Corridor":1,"../../assets/Laser":2,"../../assets/Floor":3,"../../assets/Hand":4,"../../assets/Lightsaber":5,"../../assets/Sky":6,"./utils":7}]},{},[8]);
