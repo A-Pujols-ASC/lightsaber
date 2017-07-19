@@ -613,6 +613,7 @@ socket.on('updateorientation', function(data){
 // initiates powerAttack_1
 socket.on('init_powerAttack_1'), function(data){
     console.log("Initiated powerAttack_1");
+    // init_powerAttack_1();
 }
 
 socket.on('updatemotion', function(data){

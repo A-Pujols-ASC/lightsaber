@@ -94,6 +94,7 @@ function startgame(){
 // activiates powerAttack_1
 function powerAttack_1(){
     socket.emit('powerAttack_1');
+    console.log("powerAttack_1 clicked");
 }
 
 socket.on('playsound', function(data){
