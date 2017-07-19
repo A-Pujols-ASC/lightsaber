@@ -187,7 +187,7 @@ function Enemy_1(){
     var enemy_1Geometry = new THREE.CylinderGeometry(.7, .7, 6, 7);
     var enemy_1Material = new THREE.MeshBasicMaterial({color: "#ffff00"});
     enemy_1 = new THREE.Mesh(enemy_1Geometry, enemy_1Material);
-    enemy_1.position.set(15, 30, 0);
+    enemy_1.position.set(15, -1000, 0);
     return enemy_1;
 }
 module.exports = Enemy_1;
