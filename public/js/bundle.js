@@ -580,6 +580,11 @@ $(document).ready(function(){
 	});
 });
 
+// initiates powerAttack_1
+function init_powerAttack_1(){
+
+}
+
 /* SOCKET.IO */
 
 socket.emit('viewerjoin', {room: roomId});
@@ -611,10 +616,10 @@ socket.on('updateorientation', function(data){
 });
 
 // initiates powerAttack_1
-socket.on('init_powerAttack_1'), function(data){
+socket.on('init_powerAttack_1', function(data){
     console.log("Initiated powerAttack_1");
-    // init_powerAttack_1();
-}
+    init_powerAttack_1();
+});
 
 socket.on('updatemotion', function(data){
 });
