@@ -91,6 +91,10 @@ function startgame(){
 
 }
 
+// activates powerAttack_1
+function powerAttack_1)_{
+    print('power done');
+}
 socket.on('playsound', function(data){
-	// hitSounds[Math.floor(Math.random() * 3)].play();
+    // hitSounds[Math.floor(Math.random() * 3)].play();
 });

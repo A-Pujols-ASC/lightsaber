@@ -87,7 +87,10 @@
         .confirm-button:hover {
             background-color: rgba(34, 198, 239, 0.68);
             cursor: pointer;
-        }  
+        }
+        .powerAttack {
+            
+        }
 	</style>
 	</head>
 	<body>
@@ -103,10 +106,14 @@
                             <td class="saber" id="redSaber"><img onClick="changeColor('red')" class="lightsaber displayed" src="/textures/redsaber.png"></td>
                         </tr>
                     </table>
-                <div class="confirm-button" onClick="startgame()">
-                    <span><b>CONNECTED!</b></span>
-                    <span><br>Click here to begin.<br/></span>
-                </div>
+                    <div class="confirm-button" onClick="startgame()">
+                        <span><b>CONNECTED!</b></span>
+                        <span><br>Click here to begin.<br/></span>
+                    </div>
+                    <!-- Temporary Placement for Debugging -->
+                    <div class="powerAttack"  id="powerAttack_1" onClick="powerAttack_1()">
+                        <span><b>Power Attack 1</b></span>
+                    </div>
                 </center>
             </div>
         </div>
