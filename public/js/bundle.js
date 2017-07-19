@@ -596,7 +596,6 @@ socket.on('setupcomplete', function(data){
 });
 
 // initiates game
-
 socket.on('beginGame', function(data){
     console.log("Game has Begun");
     // changes lightsaberColor to selected
@@ -610,6 +609,11 @@ socket.on('updateorientation', function(data){
 		setObjectQuat(hand, data);
 	}
 });
+
+// initiates powerAttack_1
+socket.on('init_powerAttack_1'), function(data){
+    console.log("Initiated powerAttack_1");
+}
 
 socket.on('updatemotion', function(data){
 });
