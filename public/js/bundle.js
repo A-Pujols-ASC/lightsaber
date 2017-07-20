@@ -585,6 +585,7 @@ function init_powerAttack_1(){
     console.log("Initiated powerAttack_1");
     // seeing list of lightsaber and newlasers
     console.log(Utils.collidableMeshList);
+    console.log(Utils.collidedMeshes);
 }
 
 /* SOCKET.IO */
