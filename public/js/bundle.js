@@ -553,7 +553,6 @@ Utils.checkCollision(lightsaber.children[0], "laser", true, function(result){
         // play random hit sound when deflecting
         var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
         hitSound.play();
-        console.log(laser);
   	}
   });
 
@@ -584,8 +583,8 @@ $(document).ready(function(){
 // initiates powerAttack_1
 function init_powerAttack_1(){
     console.log("Initiated powerAttack_1");
-    // debug test to see if lasers can used globally
-    console.log(lasers);
+    // seeing list of lightsaber and newlasers
+    console.log(Utils.collidableMeshList);
 }
 
 /* SOCKET.IO */
