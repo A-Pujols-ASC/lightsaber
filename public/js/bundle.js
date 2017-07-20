@@ -553,6 +553,7 @@ Utils.checkCollision(lightsaber.children[0], "laser", true, function(result){
         // play random hit sound when deflecting
         var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
         hitSound.play();
+        console.log(laser);
   	}
   });
 
