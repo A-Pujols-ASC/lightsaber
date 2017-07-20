@@ -583,6 +583,8 @@ $(document).ready(function(){
 // initiates powerAttack_1
 function init_powerAttack_1(){
     console.log("Initiated powerAttack_1");
+    // debug test to see if lasers can used globally
+    console.log(lasers);
 }
 
 /* SOCKET.IO */
